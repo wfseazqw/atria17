@@ -30,7 +30,7 @@
         ]];
 
         UILabel *label = [[UILabel alloc] init];
-        label.text = [NSString stringWithFormat:@"版本 %@（sea特别版）", PACKAGE_VERSION];
+        label.text = [NSString stringWithFormat:@"版本 %@（帆哥特别版）", PACKAGE_VERSION];
         label.numberOfLines = 0;
         label.font = [UIFont systemFontOfSize:14];
         label.textAlignment = NSTextAlignmentCenter;
