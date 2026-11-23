@@ -43,3 +43,6 @@ static inline BOOL Atria17CoreClassesAvailable(void) {
            objc_getClass("SBIconListGridLayoutConfiguration") != NULL &&
            objc_getClass("SBHDefaultIconListLayoutProvider") != NULL;
 }
+
+// 诊断日志（同时写 /tmp 和 /var/mobile/Documents，方便 Filza 查看）
+void AtriaLogLine(NSString *line);

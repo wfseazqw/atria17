@@ -3,6 +3,29 @@
 #import "ARITweakManager.h"
 
 #include <objc/runtime.h>
+#include <stdio.h>
+
+void AtriaLogLine(NSString *line) {
+    @autoreleasepool {
+        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+        fmt.dateFormat = @"HH:mm:ss";
+        NSString *stamp = [fmt stringFromDate:[NSDate date]];
+        NSString *full = [NSString stringWithFormat:@"[%@] %@\n", stamp, line];
+        NSArray *paths = @[@THEOS_PACKAGE_INSTALL_PREFIX "/tmp/atria17-diag.log",
+                           @THEOS_PACKAGE_INSTALL_PREFIX "/var/mobile/Documents/atria17-diag.log"];
+        for (NSString *path in paths) {
+            FILE *f = fopen(path.UTF8String, "a");
+            if (f) {
+                fprintf(f, "%s", full.UTF8String);
+                fclose(f);
+            }
+        }
+    }
+}
+
+@interface ARIEditManager ()
+- (UIViewController *)_atriaPresentingViewController;
+@end
 
 @implementation ARIEditManager {
     BOOL _isEditing;
@@ -96,6 +119,7 @@
 
 - (void)presentEditAlert {
     @try {
+        AtriaLogLine(@"presentEditAlert called");
         ARITweakManager *manager = [ARITweakManager sharedInstance];
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atria"
                                                                        message:@"What would you like to edit?"
@@ -113,10 +137,65 @@
                                                 handler:^(UIAlertAction *action){
                                                 }]];
 
-        [[objc_getClass("SBIconController") sharedInstance] presentViewController:alert animated:YES completion:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIViewController *presenter = [self _atriaPresentingViewController];
+            if (!presenter) {
+                AtriaLogLine(@"presentEditAlert: no presenter found");
+                return;
+            }
+            AtriaLogLine([NSString stringWithFormat:@"presenting on %@", NSStringFromClass([presenter class])]);
+            [presenter presentViewController:alert
+                                     animated:YES
+                                   completion:^{
+                                       AtriaLogLine([NSString stringWithFormat:@"present completion, presentingVC=%@",
+                                                     NSStringFromClass([alert.presentingViewController class])]);
+                                   }];
+        });
     } @catch (NSException *e) {
-        NSLog(@"[Atria17] presentEditAlert failed: %@", e);
+        AtriaLogLine([NSString stringWithFormat:@"presentEditAlert exception: %@", e]);
     }
+}
+
+// iOS 17 上 SBIconController 直接 present 经常静默失败，这里逐级回退找一个真能弹的控制器
+- (UIViewController *)_atriaPresentingViewController {
+    Class iconControllerClass = objc_getClass("SBIconController");
+    id iconController = iconControllerClass ? [iconControllerClass sharedInstance] : nil;
+
+    if (iconController && [iconController isKindOfClass:[UIViewController class]]) {
+        UIViewController *vc = (UIViewController *)iconController;
+        while (vc.presentedViewController) vc = vc.presentedViewController;
+        if (vc.view.window) {
+            AtriaLogLine([NSString stringWithFormat:@"present path 1: SBIconController -> %@", NSStringFromClass([vc class])]);
+            return vc;
+        }
+    }
+
+    UIWindow *keyWindow = nil;
+    for (UIScene *scene in [UIApplication sharedApplication].connectedScenes) {
+        if (![scene isKindOfClass:[UIWindowScene class]]) continue;
+        if (scene.activationState != UISceneActivationStateForegroundActive) continue;
+        for (UIWindow *w in ((UIWindowScene *)scene).windows) {
+            if (w.isKeyWindow) {
+                keyWindow = w;
+                break;
+            }
+        }
+        if (keyWindow) break;
+    }
+
+    UIViewController *vc = keyWindow.rootViewController;
+    while (vc.presentedViewController) vc = vc.presentedViewController;
+    if (vc) {
+        AtriaLogLine([NSString stringWithFormat:@"present path 2: keyWindow root -> %@", NSStringFromClass([vc class])]);
+        return vc;
+    }
+
+    UIView *iconControllerView = [(UIViewController *)iconController view];
+    UIWindow *window = iconControllerView.window;
+    vc = window.rootViewController;
+    while (vc.presentedViewController) vc = vc.presentedViewController;
+    AtriaLogLine([NSString stringWithFormat:@"present path 3: iconController window root -> %@", NSStringFromClass([vc class])]);
+    return vc;
 }
 
 - (UIAlertAction *)_createEditAlertAction:(NSString *)title editLocation:(NSString *)location {

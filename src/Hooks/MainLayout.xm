@@ -28,6 +28,7 @@ static BOOL didLaunchSB = NO;
 %new
 - (void)_atriaBeginEditing {
 	@try {
+		AtriaLogLine(@"triple tap fired");
 		[[ARIEditManager sharedInstance] presentEditAlert];
 	} @catch (NSException *e) {
 		NSLog(@"[Atria17] begin editing failed: %@", e);
@@ -35,6 +36,11 @@ static BOOL didLaunchSB = NO;
 }
 
 - (SBIconListFlowExtendedLayout *)layout {
+	static BOOL atriaLoggedLayoutHook = NO;
+	if(!atriaLoggedLayoutHook) {
+		atriaLoggedLayoutHook = YES;
+		AtriaLogLine([NSString stringWithFormat:@"SBIconListView -layout hooked, location=%@", self.iconLocation]);
+	}
 	SBIconListFlowExtendedLayout *orig = %orig;
 
 	SBIconListModel *model = [self model];
@@ -84,6 +90,7 @@ static BOOL didLaunchSB = NO;
 			self._atriaTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_atriaBeginEditing)];
 			[self._atriaTap setNumberOfTapsRequired:3];
 			[self addGestureRecognizer:self._atriaTap];
+			AtriaLogLine([NSString stringWithFormat:@"tap gesture added on %@, icons=%lu", NSStringFromClass([self class]), (unsigned long)[self.icons count]]);
 		} else if(self._atriaTap && [manager boolValueForKey:@"disableTapGesture"]) {
 			[self removeGestureRecognizer:self._atriaTap];
 			self._atriaTap = nil;
