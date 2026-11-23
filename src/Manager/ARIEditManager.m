@@ -83,8 +83,53 @@ void AtriaLogLine(NSString *line) {
             }
             view.alpha = 0.0F;
             view.transform = CGAffineTransformMakeScale(0.25F, 0.25F);
-            UIView *hostView = iconController.view;
+
+            // iOS 17 上 SBIconController 不一定还是 UIViewController，取它的 view 可能抛异常；
+            // 依次回退：iconController.view（且必须已在窗口上）→ 前台 keyWindow → 场景内第一个窗口 → 第一个窗口
+            UIView *hostView = nil;
+            @try {
+                if([iconController respondsToSelector:@selector(view)]) {
+                    UIView *candidate = [(UIViewController *)iconController view];
+                    if(candidate && candidate.window) hostView = candidate;
+                }
+            } @catch (NSException *e) {
+                AtriaLogLine([NSString stringWithFormat:@"[dbg] iconController.view exception: %@ - %@", e.name, e.reason]);
+            }
+            if(!hostView) {
+                for(UIScene *scene in [[UIApplication sharedApplication] connectedScenes]) {
+                    if(![scene isKindOfClass:[UIWindowScene class]]) continue;
+                    for(UIWindow *win in [(UIWindowScene *)scene windows]) {
+                        if(win.isKeyWindow) {
+                            hostView = win;
+                            break;
+                        }
+                    }
+                    if(hostView) break;
+                }
+                if(hostView) AtriaLogLine(@"[dbg] host fallback: key window");
+            }
+            if(!hostView) {
+                for(UIScene *scene in [[UIApplication sharedApplication] connectedScenes]) {
+                    if(![scene isKindOfClass:[UIWindowScene class]]) continue;
+                    NSArray *ws = [(UIWindowScene *)scene windows];
+                    if(ws.count) {
+                        hostView = ws.firstObject;
+                        break;
+                    }
+                }
+                if(hostView) AtriaLogLine(@"[dbg] host fallback: first window of scene");
+            }
+            if(!hostView) {
+                hostView = [[[UIApplication sharedApplication] windows] firstObject];
+                AtriaLogLine(@"[dbg] host fallback: first app window");
+            }
             AtriaLogLine([NSString stringWithFormat:@"[dbg] host view=%@", hostView ? NSStringFromClass([hostView class]) : @"(nil)"]);
+            if(!hostView) {
+                AtriaLogLine(@"[dbg] aborting: no host view");
+                _isEditing = NO;
+                _editingLocation = nil;
+                return;
+            }
             [hostView addSubview:view];
             AtriaLogLine(@"[dbg] edit view added to springboard view");
             [NSLayoutConstraint activateConstraints:@[
@@ -101,7 +146,10 @@ void AtriaLogLine(NSString *line) {
                 }
                 completion:^(BOOL finished) {
                     @try {
-                        AtriaLogLine(@"[dbg] animation finished, calling toggleOptionsView");
+                        AtriaLogLine([NSString stringWithFormat:@"[dbg] animation finished, inWindow=%d frame=%@ alpha=%f",
+                                      view.window ? 1 : 0,
+                                      NSStringFromCGRect(view.frame),
+                                      view.alpha]);
                         [view toggleOptionsView:nil];
                         AtriaLogLine(@"[dbg] toggleOptionsView returned");
                     } @catch (NSException *e) {
