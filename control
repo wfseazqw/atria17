@@ -1,0 +1,9 @@
+Package: me.lau.atria
+Name: Atria
+Version: 1.4.1-17.1
+Architecture: iphoneos-arm64e
+Description: iOS 17 / RootHide 移植版主屏幕布局编辑器（基于 Atria 1.4.1，GPL-3.0）
+Maintainer: fan
+Author: ren7995 (original), fan (iOS 17 port)
+Section: Tweaks
+Depends: firmware (>= 16.5), firmware (<< 17.4), mobilesubstrate, preferenceloader
