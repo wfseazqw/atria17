@@ -14,7 +14,7 @@ include $(THEOS_MAKE_PATH)/tweak.mk
 BUNDLE_NAME = AtriaPrefs
 AtriaPrefs_INSTALL_PATH = /Library/PreferenceBundles
 AtriaPrefs_FILES = $(shell find Prefs/src -type f -name "*.m" | sort)
-AtriaPrefs_CFLAGS = -fobjc-arc -Wno-deprecated-declarations
+AtriaPrefs_CFLAGS = -fobjc-arc -Wno-deprecated-declarations -DPACKAGE_VERSION='@"$(THEOS_PACKAGE_BASE_VERSION)"' -DPACKAGE_TYPE='@"Release"'
 AtriaPrefs_FRAMEWORKS = UIKit Foundation
 AtriaPrefs_PRIVATE_FRAMEWORKS = Preferences
 AtriaPrefs_RESOURCE_DIRS = Prefs/Resources
