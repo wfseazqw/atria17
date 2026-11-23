@@ -30,7 +30,8 @@
         ]];
 
         UILabel *label = [[UILabel alloc] init];
-        label.text = @"Version " PACKAGE_VERSION " (" PACKAGE_TYPE ")";
+        NSString *packageType = [PACKAGE_TYPE isEqualToString:@"Release"] ? @"正式版" : PACKAGE_TYPE;
+        label.text = [NSString stringWithFormat:@"版本 %@（%@）", PACKAGE_VERSION, packageType];
         label.numberOfLines = 0;
         label.font = [UIFont systemFontOfSize:14];
         label.textAlignment = NSTextAlignmentCenter;

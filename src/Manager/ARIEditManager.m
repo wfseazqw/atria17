@@ -122,17 +122,17 @@ void AtriaLogLine(NSString *line) {
         AtriaLogLine(@"presentEditAlert called");
         ARITweakManager *manager = [ARITweakManager sharedInstance];
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atria"
-                                                                       message:@"What would you like to edit?"
+                                                                       message:@"想编辑哪一部分？"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
 
-        [alert addAction:[self _createEditAlertAction:@"Homescreen Pages" editLocation:@"hs"]];
-        [alert addAction:[self _createEditAlertAction:@"Dock" editLocation:@"dock"]];
-        [alert addAction:[self _createEditAlertAction:@"Page Labels" editLocation:@"label"]];
-        [alert addAction:[self _createEditAlertAction:@"Page Dots" editLocation:@"pagedot"]];
+        [alert addAction:[self _createEditAlertAction:@"主屏幕页面" editLocation:@"hs"]];
+        [alert addAction:[self _createEditAlertAction:@"Dock 栏" editLocation:@"dock"]];
+        [alert addAction:[self _createEditAlertAction:@"页面标签" editLocation:@"label"]];
+        [alert addAction:[self _createEditAlertAction:@"页面圆点" editLocation:@"pagedot"]];
         if([manager boolValueForKey:@"showBackground"]) {
-            [alert addAction:[self _createEditAlertAction:@"Background Blur" editLocation:@"blur"]];
+            [alert addAction:[self _createEditAlertAction:@"背景模糊" editLocation:@"blur"]];
         }
-        [alert addAction:[UIAlertAction actionWithTitle:@"Cancel"
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消"
                                                   style:UIAlertActionStyleCancel
                                                 handler:^(UIAlertAction *action){
                                                 }]];

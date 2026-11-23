@@ -18,23 +18,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UIBarButtonItem *respring = [[UIBarButtonItem alloc] initWithTitle:@"Respring" style:UIBarButtonItemStylePlain target:self action:@selector(promptRespring:)];
+    UIBarButtonItem *respring = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(promptRespring:)];
     self.navigationItem.rightBarButtonItem = respring;
 }
 
 - (void)promptRespring:(id)sender {
     UIAlertController *alert = [UIAlertController
-        alertControllerWithTitle:@"Respring"
-                         message:@"Are you sure you want to respring?"
+        alertControllerWithTitle:@"注销"
+                         message:@"确定要注销（Respring）吗？"
                   preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *defaultAction = [UIAlertAction
-        actionWithTitle:@"No"
+        actionWithTitle:@"否"
                   style:UIAlertActionStyleCancel
                 handler:nil];
 
     UIAlertAction *yes = [UIAlertAction
-        actionWithTitle:@"Yes"
+        actionWithTitle:@"是"
                   style:UIAlertActionStyleDestructive
                 handler:^(UIAlertAction *action) {
                     [self respringWithAnimation];

@@ -8,12 +8,12 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Welcome Label</string>
+			<string>欢迎语</string>
 			<key>footerText</key>
-			<string>Welcome message only applies to the first page. Tap the label to edit the text. Automatically enabled if "Show All Page Labels" is. The following can be used for dynamic text replacement:
-%GREETING%: Time-based greeting
-%TEMPERATURE%: Current temperature
-%LOCATION%: Weather city</string>
+			<string>欢迎语只显示在第一页。点标签可以改文字。打开“显示所有页面标签”后会自动启用。动态文字支持以下占位符：
+%GREETING%：按时间变化的问候语
+%TEMPERATURE%：当前温度
+%LOCATION%：天气所在城市</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -25,7 +25,7 @@
 			<key>key</key>
 			<string>showWelcome</string>
 			<key>label</key>
-			<string>Show Welcome Message</string>
+			<string>显示欢迎语</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -39,7 +39,7 @@
 			<key>key</key>
 			<string>showWeatherIcon</string>
 			<key>label</key>
-			<string>Show Weather Icon</string>
+			<string>显示天气图标</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -47,9 +47,9 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Page Labels</string>
+			<string>页面标签</string>
 			<key>footerText</key>
-			<string>Shows a configurable label on homescreen pages. Tap the label to edit the text.</string>
+			<string>在桌面页面上显示可自定义的文字标签。点标签即可改文字。</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -61,7 +61,7 @@
 			<key>key</key>
 			<string>showPageLabels</string>
 			<key>label</key>
-			<string>Show All Page Labels</string>
+			<string>显示所有页面标签</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -75,7 +75,7 @@
 			<key>key</key>
 			<string>pageLabelShadow</string>
 			<key>label</key>
-			<string>Label Shadow</string>
+			<string>文字阴影</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -83,9 +83,9 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Text Color</string>
+			<string>文字颜色</string>
 			<key>footerText</key>
-			<string>Custom fonts may be used by placing a .ttf file at /Library/PreferenceBundles/AtriaPrefs.bundle/Custom.ttf. If the font fails to load, the default will be used. A respring is required for the font to be reloaded.</string>
+			<string>自定义字体：把 .ttf 文件放到 /Library/PreferenceBundles/AtriaPrefs.bundle/Custom.ttf。字体加载失败会退回默认字体。换字体后需要注销。</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -93,7 +93,7 @@
 			<key>cellClass</key>
 			<string>HBColorPickerTableCell</string>
 			<key>label</key>
-			<string>Text Color</string>
+			<string>文字颜色</string>
 			<key>showAlphaSlider</key>
 			<false/>
 			<key>default</key>
@@ -107,6 +107,6 @@
 		</dict>
 	</array>
 	<key>title</key>
-	<string>Page Labels</string>
+	<string>页面标签</string>
 </dict>
 </plist>

@@ -139,72 +139,72 @@
 
         // Homescreen
         [self _registerOption:@"hs_rows"
-                  translation:@"Rows"
+                  translation:@"行数"
                  defaultValue:@(6)
                    lowerLimit:2.0F
                    upperLimit:20.0F];
         [self _registerOption:@"hs_columns"
-                  translation:@"Columns"
+                  translation:@"列数"
                  defaultValue:@(4)
                    lowerLimit:2.0F
                    upperLimit:20.0F];
         [self _registerOption:@"hs_iconScale"
-                  translation:@"Icon Scale"
+                  translation:@"图标大小"
                  defaultValue:@(1.0)
                    lowerLimit:0.01F
                    upperLimit:2.0F];
         [self _registerOption:@"hs_widgetIconScale"
-                  translation:@"Widget Scale"
+                  translation:@"小组件大小"
                  defaultValue:@(1.0)
                    lowerLimit:0.01F
                    upperLimit:3.0F];
         [self _registerOption:@"hs_spacing_x"
-                  translation:@"Icon Spacing X"
+                  translation:@"横向间距"
                  defaultValue:@(0)
                    lowerLimit:-100.0F
                    upperLimit:100.0F];
         [self _registerOption:@"hs_spacing_y"
-                  translation:@"Icon Spacing Y"
+                  translation:@"纵向间距"
                  defaultValue:@(0)
                    lowerLimit:-100.0F
                    upperLimit:100.0F];
         [self _registerOption:@"hs_inset_top"
-                  translation:@"Top Inset"
+                  translation:@"上边距"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
         [self _registerOption:@"hs_inset_left"
-                  translation:@"Left Inset"
+                  translation:@"左边距"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
         [self _registerOption:@"hs_inset_bottom"
-                  translation:@"Bottom Inset"
+                  translation:@"下边距"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
         [self _registerOption:@"hs_inset_right"
-                  translation:@"Right Inset"
+                  translation:@"右边距"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
         [self _registerOption:@"hs_offset_top"
-                  translation:@"Page Top Offset"
+                  translation:@"页面上偏移"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
         [self _registerOption:@"hs_offset_left"
-                  translation:@"Page Left Offset"
+                  translation:@"页面左偏移"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
         [self _registerOption:@"hs_widgetXOffset"
-                  translation:@"Widget X Offset"
+                  translation:@"小组件横向偏移"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
         [self _registerOption:@"hs_widgetYOffset"
-                  translation:@"Widget Y Offset"
+                  translation:@"小组件纵向偏移"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
@@ -213,119 +213,119 @@
         // For some reason, on iOS 15 only (not 13-14 or 16+), calling +isFloatingDockSupported leads to a respring loop.
         // Once SpringBoard launches, this option will be re-registered to adjust the default value if floating dock is enabled.
         [self _registerOption:@"dock_columns"
-                  translation:@"Columns"
+                  translation:@"列数"
                  defaultValue:@(4)
                    lowerLimit:2.0F
                    upperLimit:20.0F];
         [self _registerOption:@"dock_rows"
-                  translation:@"Rows"
+                  translation:@"行数"
                  defaultValue:@(1)
                    lowerLimit:1.0F
                    upperLimit:5.0F];
         [self _registerOption:@"dock_iconScale"
-                  translation:@"Icon Scale"
+                  translation:@"图标大小"
                  defaultValue:@(1)
                    lowerLimit:0.01F
                    upperLimit:2.0F];
         [self _registerOption:@"dock_bg"
-                  translation:@"Background Alpha"
+                  translation:@"背景不透明度"
                  defaultValue:@(1)
                    lowerLimit:0.0F
                    upperLimit:1.0F];
         [self _registerOption:@"dock_spacing_x"
-                  translation:@"Icon Spacing X"
+                  translation:@"横向间距"
                  defaultValue:@(0)
                    lowerLimit:-100.0F
                    upperLimit:100.0F];
         [self _registerOption:@"dock_spacing_y"
-                  translation:@"Icon Spacing Y"
+                  translation:@"纵向间距"
                  defaultValue:@(0)
                    lowerLimit:-100.0F
                    upperLimit:100.0F];
         [self _registerOption:@"dock_inset_top"
-                  translation:@"Top Inset"
+                  translation:@"上边距"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
         [self _registerOption:@"dock_inset_left"
-                  translation:@"Left Inset"
+                  translation:@"左边距"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
         [self _registerOption:@"dock_inset_bottom"
-                  translation:@"Bottom Inset"
+                  translation:@"下边距"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
         [self _registerOption:@"dock_inset_right"
-                  translation:@"Right Inset"
+                  translation:@"右边距"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
 
         // Page labels
         [self _registerOption:@"label_textSize"
-                  translation:@"Text Size"
+                  translation:@"字号"
                  defaultValue:@(27)
                    lowerLimit:1.0F
                    upperLimit:60.0F];
         [self _registerOption:@"label_inset_left"
-                  translation:@"Side Inset"
+                  translation:@"水平边距"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
         [self _registerOption:@"label_inset_top"
-                  translation:@"Vertical Inset"
+                  translation:@"垂直边距"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
 
         // Blur background
         [self _registerOption:@"blur_alpha"
-                  translation:@"Background Alpha"
+                  translation:@"背景不透明度"
                  defaultValue:@(1)
                    lowerLimit:0.0F
                    upperLimit:1.0F];
         [self _registerOption:@"blur_corner_radius"
-                  translation:@"Corner Radius"
+                  translation:@"圆角半径"
                  defaultValue:@(14)
                    lowerLimit:0.0F
                    upperLimit:100.0F];
         [self _registerOption:@"blur_intensity"
-                  translation:@"Tint Intensity"
+                  translation:@"着色强度"
                  defaultValue:@(0.5F)
                    lowerLimit:0.0F
                    upperLimit:1.0F];
 
         [self _registerOption:@"blur_inset_top"
-                  translation:@"Top Position"
+                  translation:@"顶部位置"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
         [self _registerOption:@"blur_inset_left"
-                  translation:@"Left Position"
+                  translation:@"左侧位置"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
         [self _registerOption:@"blur_inset_bottom"
-                  translation:@"Bottom Position"
+                  translation:@"底部位置"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
         [self _registerOption:@"blur_inset_right"
-                  translation:@"Right Position"
+                  translation:@"右侧位置"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
 
         // Page dots
         [self _registerOption:@"pagedot_offsetX"
-                  translation:@"Dot X Offset"
+                  translation:@"圆点横向偏移"
                  defaultValue:@(0)
                    lowerLimit:-150.0F
                    upperLimit:150.0F];
         [self _registerOption:@"pagedot_offsetY"
-                  translation:@"Dot Y Offset"
+                  translation:@"圆点纵向偏移"
                  defaultValue:@(0)
                    lowerLimit:-200.0F
                    upperLimit:200.0F];
@@ -503,7 +503,7 @@
     // If floating dock is enabled, default to 6 dock columns. See explanation in init method for why this is done here.
     if([self boolValueForKey:@"forceFloatingDock"] || [[self class] isUsingFloatingDock]) {
         [self _registerOption:@"dock_columns"
-                  translation:@"Columns"
+                  translation:@"列数"
                  defaultValue:@(15) // iPad Pro dock icon limit
                    lowerLimit:2.0F
                    upperLimit:20.0F];

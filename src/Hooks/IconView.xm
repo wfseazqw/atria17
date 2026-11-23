@@ -219,14 +219,14 @@
 	if(!items) items = [NSMutableArray new];
 
 	if(IconIsInRoot(self)) {
-		[items addObject:[self _atriaGenerateItemWithTitle:@"Edit Layout" type:@"me.lau.atria.edit.hs"]];
-		[items addObject:[self _atriaGenerateItemWithTitle:@"Edit Page Dots" type:@"me.lau.atria.edit.pagedot"]];
-		[items addObject:[self _atriaGenerateItemWithTitle:@"Edit Page Labels" type:@"me.lau.atria.edit.label"]];
+		[items addObject:[self _atriaGenerateItemWithTitle:@"编辑布局" type:@"me.lau.atria.edit.hs"]];
+		[items addObject:[self _atriaGenerateItemWithTitle:@"编辑页面圆点" type:@"me.lau.atria.edit.pagedot"]];
+		[items addObject:[self _atriaGenerateItemWithTitle:@"编辑页面标签" type:@"me.lau.atria.edit.label"]];
 		if([[ARITweakManager sharedInstance] boolValueForKey:@"showBackground"]) {
-			[items addObject:[self _atriaGenerateItemWithTitle:@"Edit Background Blur" type:@"me.lau.atria.edit.blur"]];
+			[items addObject:[self _atriaGenerateItemWithTitle:@"编辑背景模糊" type:@"me.lau.atria.edit.blur"]];
 		}
 	} else if(IconIsInDock(self)) {
-		[items addObject:[self _atriaGenerateItemWithTitle:@"Edit Dock" type:@"me.lau.atria.edit.dock"]];
+		[items addObject:[self _atriaGenerateItemWithTitle:@"编辑 Dock 栏" type:@"me.lau.atria.edit.dock"]];
 	}
 
 	return items;

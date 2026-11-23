@@ -8,9 +8,9 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>General</string>
+			<string>通用</string>
 			<key>footerText</key>
-			<string>Requires a respring to apply.</string>
+			<string>需要注销（Respring）后生效。</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -22,7 +22,7 @@
 			<key>key</key>
 			<string>dynamicWidgetSizing</string>
 			<key>label</key>
-			<string>Dynamic Widget Sizing</string>
+			<string>小组件动态尺寸</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -36,7 +36,7 @@
 			<key>key</key>
 			<string>disableDock</string>
 			<key>label</key>
-			<string>Disable Dock</string>
+			<string>禁用 Dock 栏</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -48,7 +48,7 @@
 			<key>key</key>
 			<string>scaleInsideFolders</string>
 			<key>label</key>
-			<string>Scale Icons In Folders</string>
+			<string>文件夹内图标也缩放</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -56,9 +56,9 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Homescreen Gestures</string>
+			<string>桌面手势</string>
 			<key>footerText</key>
-			<string>Disables homescreen activation gestures for certain features. Disabling app library gesture will not work if floating dock is enabled. Requires a respring to apply.</string>
+			<string>关闭某些功能的桌面触发手势。开启悬浮 Dock 时“禁用资源库手势”不会生效。需要注销后生效。</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -70,7 +70,7 @@
 			<key>key</key>
 			<string>disableTodayGesture</string>
 			<key>label</key>
-			<string>Disable Today View</string>
+			<string>禁用今日视图</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -82,15 +82,15 @@
 			<key>key</key>
 			<string>disableAppLibraryGesture</string>
 			<key>label</key>
-			<string>Disable App Library</string>
+			<string>禁用资源库</string>
 		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>iPad/Floating Dock</string>
+			<string>iPad / 悬浮 Dock</string>
 			<key>footerText</key>
-			<string>Requires a respring to apply.</string>
+			<string>需要注销（Respring）后生效。</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -102,7 +102,7 @@
 			<key>key</key>
 			<string>forceFloatingDock</string>
 			<key>label</key>
-			<string>Force Floating Dock</string>
+			<string>强制悬浮 Dock</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -114,7 +114,7 @@
 			<key>key</key>
 			<string>disableFloatingDockGestures</string>
 			<key>label</key>
-			<string>Disable Dock Gestures</string>
+			<string>禁用 Dock 手势</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -126,7 +126,7 @@
 			<key>key</key>
 			<string>floatingDockAppLibrary</string>
 			<key>label</key>
-			<string>Show App Library</string>
+			<string>显示资源库</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -138,7 +138,7 @@
 			<key>key</key>
 			<string>floatingDockRecents</string>
 			<key>label</key>
-			<string>Show Recents</string>
+			<string>显示最近使用</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -151,9 +151,9 @@
 			<string>maxFloatingDockRecents</string>
             <key>validTitles</key>
 			<array>
-				<string>1 App</string>
-				<string>2 Apps</string>
-				<string>3 Apps</string>
+				<string>1 个</string>
+				<string>2 个</string>
+				<string>3 个</string>
 			</array>
 			<key>validValues</key>
 			<array>
@@ -166,9 +166,9 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Hide Stuff</string>
+			<string>隐藏内容</string>
 			<key>footerText</key>
-			<string>If these settings do not appear to instantly apply, try scrolling to a different page and back. Some may require a respring to apply.</string>
+			<string>如果这些开关没立刻生效，试试翻到别的页面再翻回来。有些需要注销后才生效。</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -180,7 +180,7 @@
 			<key>key</key>
 			<string>hideBadges</string>
 			<key>label</key>
-			<string>Hide Icon Badges</string>
+			<string>隐藏图标角标</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -194,7 +194,7 @@
 			<key>key</key>
 			<string>hidePageDots</string>
 			<key>label</key>
-			<string>Hide Page Dots</string>
+			<string>隐藏页面圆点</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -208,7 +208,7 @@
 			<key>key</key>
 			<string>hideFolderIconBG</string>
 			<key>label</key>
-			<string>Hide Folder Icon Blur</string>
+			<string>隐藏文件夹背景模糊</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -216,9 +216,9 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Icon Labels</string>
+			<string>图标名称</string>
 			<key>footerText</key>
-			<string>If these settings do not appear to instantly apply, try scrolling to a different page and back</string>
+			<string>如果没立刻生效，试试翻到别的页面再翻回来</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -230,7 +230,7 @@
 			<key>key</key>
 			<string>hideLabels</string>
 			<key>label</key>
-			<string>Hide on Homescreen</string>
+			<string>桌面隐藏名称</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -244,7 +244,7 @@
 			<key>key</key>
 			<string>hideLabelsAppLibrary</string>
 			<key>label</key>
-			<string>Hide in App Library</string>
+			<string>资源库隐藏名称</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -258,12 +258,12 @@
 			<key>key</key>
 			<string>hideLabelsFolders</string>
 			<key>label</key>
-			<string>Hide In Folders</string>
+			<string>文件夹内隐藏名称</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
 	</array>
 	<key>title</key>
-	<string>General</string>
+	<string>通用</string>
 </dict>
 </plist>

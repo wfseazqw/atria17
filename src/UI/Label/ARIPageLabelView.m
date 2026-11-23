@@ -18,7 +18,7 @@
     ARITweakManager *manager = [ARITweakManager sharedInstance];
     NSString *text = [manager rawValueForKey:@"pageLabelText" forListView:superv];
     if(text) return text;
-    return [NSString stringWithFormat:@"Page %d", (int)[manager indexOfListView:superv] + 1];
+    return [NSString stringWithFormat:@"第 %d 页", (int)[manager indexOfListView:superv] + 1];
 }
 
 - (NSString *)processRawText:(NSString *)rawText isScheduledUpdate:(BOOL)scheduled {

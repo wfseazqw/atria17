@@ -59,7 +59,7 @@
         [_dismiss addTarget:self
                       action:@selector(dismissSelf:)
             forControlEvents:UIControlEventTouchUpInside];
-        [_dismiss setTitle:@"Dismiss" forState:UIControlStateNormal];
+        [_dismiss setTitle:@"知道了" forState:UIControlStateNormal];
         _dismiss.layer.cornerRadius = 20;
         _dismiss.layer.masksToBounds = YES;
         _dismiss.layer.cornerCurve = kCACornerCurveContinuous;
@@ -68,7 +68,7 @@
 
         // My label
         _ren = [[UILabel alloc] init];
-        _ren.text = @"made with love by ren7995";
+        _ren.text = @"作者 ren7995";
         _ren.font = [UIFont systemFontOfSize:12 weight:UIFontWeightLight];
         _ren.textAlignment = NSTextAlignmentCenter;
         _ren.translatesAutoresizingMaskIntoConstraints = NO;

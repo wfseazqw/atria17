@@ -8,7 +8,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Editor Behavior</string>
+			<string>编辑器行为</string>
 		</dict>
         <dict>
 			<key>cell</key>
@@ -20,13 +20,13 @@
 			<key>key</key>
 			<string>showTooltips</string>
 			<key>label</key>
-			<string>Show Tooltips</string>
+			<string>显示操作提示</string>
 		</dict>
         <dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Open From</string>
+			<string>弹出位置</string>
 		</dict>
         <dict>
 			<key>cell</key>
@@ -39,8 +39,8 @@
 			<string>editorOpenFrom</string>
             <key>validTitles</key>
 			<array>
-				<string>Bottom</string>
-				<string>Top</string>
+				<string>底部</string>
+				<string>顶部</string>
 			</array>
 			<key>validValues</key>
 			<array>
@@ -52,10 +52,10 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Activation Settings</string>
+			<string>呼出方式</string>
 			<key>footerText</key>
-			<string>Hide Actions: Hides Atria's 3D touch actions from the menu. Turn on if you are done configuring, and do not want to see the options. 
-Disable Tap Gesture: Disables the triple tap gesture that can be used to invoke Atria from the homescren pages</string>
+			<string>隐藏菜单项：把 Atria 的长按菜单项藏起来。配置完不想再看到这些选项就打开它。
+禁用三击手势：关掉“在桌面空白处三击呼出 Atria”的手势</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -67,7 +67,7 @@ Disable Tap Gesture: Disables the triple tap gesture that can be used to invoke 
 			<key>key</key>
 			<string>hide3DTouchActions</string>
 			<key>label</key>
-			<string>Hide Actions</string>
+			<string>隐藏菜单项</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -81,12 +81,12 @@ Disable Tap Gesture: Disables the triple tap gesture that can be used to invoke 
 			<key>key</key>
 			<string>disableTapGesture</string>
 			<key>label</key>
-			<string>Disable Tap Gesture</string>
+			<string>禁用三击手势</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
     </array>
 	<key>title</key>
-	<string>Editor</string>
+	<string>编辑器</string>
 </dict>
 </plist>

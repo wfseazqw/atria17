@@ -18,16 +18,16 @@
 
 - (void)resetPrefs:(id)sender {
     UIAlertController *alert = [UIAlertController
-        alertControllerWithTitle:@"Reset Preferences"
-                         message:@"Are you sure you want to reset preferences? Your device will respring."
+        alertControllerWithTitle:@"重置设置"
+                         message:@"确定要重置所有设置吗？设备会注销（Respring）。"
                   preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *defaultAction = [UIAlertAction
-        actionWithTitle:@"No"
+        actionWithTitle:@"否"
                   style:UIAlertActionStyleCancel
                 handler:nil];
     UIAlertAction *yes = [UIAlertAction
-        actionWithTitle:@"Yes"
+        actionWithTitle:@"是"
                   style:UIAlertActionStyleDestructive
                 handler:^(UIAlertAction *action) {
                     NSUserDefaults *prefs = [[NSUserDefaults standardUserDefaults] init];
@@ -42,16 +42,16 @@
 
 - (void)resetSaveState:(id)sender {
     UIAlertController *alert = [UIAlertController
-        alertControllerWithTitle:@"Reset Save State"
-                         message:@"Are you sure you want to reset save state? Your device will respring."
+        alertControllerWithTitle:@"重置保存的图标状态"
+                         message:@"确定要重置保存的图标状态吗？设备会注销（Respring）。"
                   preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *defaultAction = [UIAlertAction
-        actionWithTitle:@"No"
+        actionWithTitle:@"否"
                   style:UIAlertActionStyleCancel
                 handler:nil];
     UIAlertAction *yes = [UIAlertAction
-        actionWithTitle:@"Yes"
+        actionWithTitle:@"是"
                   style:UIAlertActionStyleDestructive
                 handler:^(UIAlertAction *action) {
                     NSUserDefaults *prefs = [[NSUserDefaults alloc] initWithSuiteName:ARIPreferenceDomain];
@@ -76,7 +76,7 @@
     NSMutableDictionary *dict = [[NSDictionary dictionaryWithContentsOfURL:url error:&error] mutableCopy]
                                     ?: [NSMutableDictionary new];
     if(error) {
-        [self displayAlert:@"Failed to export" message:[NSString stringWithFormat:@"Error: %@", error.localizedDescription]];
+        [self displayAlert:@"导出失败" message:[NSString stringWithFormat:@"错误：%@", error.localizedDescription]];
         return;
     }
 
@@ -89,24 +89,24 @@
                                                        options:0
                                                          error:&error];
     if(error) {
-        [self displayAlert:@"Failed to export" message:[NSString stringWithFormat:@"Error: %@", error.localizedDescription]];
+        [self displayAlert:@"导出失败" message:[NSString stringWithFormat:@"错误：%@", error.localizedDescription]];
         return;
     }
 
     NSString *encoded = [jsonData base64EncodedStringWithOptions:0];
     [UIPasteboard generalPasteboard].string = encoded;
-    [self displayAlert:@"Success" message:@"Settings exported and copied to clipboard"];
+    [self displayAlert:@"成功" message:@"设置已导出，并复制到剪贴板了"];
 }
 
 - (void)importSettingsString {
     NSString *pasteboardString = [UIPasteboard generalPasteboard].string;
     if(!pasteboardString) {
-        [self displayAlert:@"Failed to import" message:@"No string was found in your clipboard."];
+        [self displayAlert:@"导入失败" message:@"剪贴板里没找到内容。"];
         return;
     }
     NSData *decodeData = [[NSData alloc] initWithBase64EncodedString:pasteboardString options:0];
     if(!decodeData) {
-        [self displayAlert:@"Failed to import" message:@"Failed to decode. Perhaps the settings string in your clipboard is invalid?"];
+        [self displayAlert:@"导入失败" message:@"解码失败，剪贴板里的设置串可能无效。"];
         return;
     }
 
@@ -114,7 +114,7 @@
     NSDictionary *settingsDictionary = [NSJSONSerialization JSONObjectWithData:decodeData options:kNilOptions error:&error];
 
     if(!settingsDictionary) {
-        [self displayAlert:@"Failed to import" message:[NSString stringWithFormat:@"Perhaps the settings string in your clipboard is invalid?\n\nError: %@", error.localizedDescription]];
+        [self displayAlert:@"导入失败" message:[NSString stringWithFormat:@"剪贴板里的设置串可能无效。\n\n错误：%@", error.localizedDescription]];
         return;
     }
 
@@ -134,12 +134,12 @@
     [defaults synchronize];
 
     UIAlertController *alert = [UIAlertController
-        alertControllerWithTitle:@"Success"
-                         message:[NSString stringWithFormat:@"Settings imported. You may now respring to apply completely.\n\nSettings imported: %@", settingsDictionary]
+        alertControllerWithTitle:@"成功"
+                         message:[NSString stringWithFormat:@"设置已导入。建议注销一次让全部生效。\n\n已导入：%@", settingsDictionary]
                   preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *defaultAction = [UIAlertAction
-        actionWithTitle:@"Respring"
+        actionWithTitle:@"注销"
                   style:UIAlertActionStyleDestructive
                 handler:^(UIAlertAction *action) {
                     [self respringWithAnimation];
@@ -155,7 +155,7 @@
                   preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *defaultAction = [UIAlertAction
-        actionWithTitle:@"OK"
+        actionWithTitle:@"好"
                   style:UIAlertActionStyleCancel
                 handler:nil];
 

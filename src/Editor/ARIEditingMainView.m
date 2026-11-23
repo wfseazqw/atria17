@@ -70,7 +70,7 @@
 
         // Label
         UILabel *currentSettingLabel = [UILabel new];
-        currentSettingLabel.text = @"Choose a setting";
+        currentSettingLabel.text = @"选择一个设置";
         currentSettingLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightSemibold];
         currentSettingLabel.textAlignment = NSTextAlignmentCenter;
         currentSettingLabel.numberOfLines = 1;
@@ -310,7 +310,7 @@
     if([ARIEditManager sharedInstance].singleListMode) {
         // Single list mode
         ARITweakManager *manager = [ARITweakManager sharedInstance];
-        self.perPageIndicator.text = [NSString stringWithFormat:@"Page %lu Only", [manager indexOfListView:[[ARIEditManager sharedInstance] currentIconListViewIfSinglePage]] + 1];
+        self.perPageIndicator.text = [NSString stringWithFormat:@"仅第 %lu 页", [manager indexOfListView:[[ARIEditManager sharedInstance] currentIconListViewIfSinglePage]] + 1];
 
         _perPage.image = [UIImage systemImageNamed:@"doc.fill"];
     } else {
@@ -329,8 +329,8 @@
 
     if(_heightAnchor.constant == [self getBaseHeight]) {
         // Activate
-        [self.currentSettingLabel setText:@"Choose a setting"];
-        [_instructions setText:@"Click the page icon to edit this page only"];
+        [self.currentSettingLabel setText:@"选择一个设置"];
+        [_instructions setText:@"点页面图标：只改当前这一页"];
 
         if(self.currentControls) {
             [self.currentControls endTextEntry];
@@ -370,7 +370,7 @@
                          }];
     } else {
         // End
-        [_instructions setText:@"Click the label at the top to go back"];
+        [_instructions setText:@"点顶部标题返回"];
 
         [UIView animateWithDuration:0.3f
             animations:^{

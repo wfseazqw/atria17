@@ -8,9 +8,9 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Drop Shadow</string>
+			<string>投影</string>
 			<key>footerText</key>
-			<string>Adds a shadow effect behind each icon</string>
+			<string>给每个图标后面加一层阴影</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -22,7 +22,7 @@
 			<key>key</key>
 			<string>dropShadow</string>
 			<key>label</key>
-			<string>Enable Drop Shadow</string>
+			<string>启用图标投影</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -30,9 +30,9 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Background Blur</string>
+			<string>背景模糊</string>
 			<key>footerText</key>
-			<string>Shows a configurable blur behind your icons</string>
+			<string>在图标后面显示一块可调的背景模糊</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -44,7 +44,7 @@
 			<key>key</key>
 			<string>showBackground</string>
 			<key>label</key>
-			<string>Show Background Blur</string>
+			<string>显示背景模糊</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -52,7 +52,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Blur Tint</string>
+			<string>模糊着色</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -64,7 +64,7 @@
 			<key>key</key>
 			<string>blurTintEnabled</string>
 			<key>label</key>
-			<string>Enable Tint</string>
+			<string>启用着色</string>
 			<key>PostNotification</key>
 			<string>me.lau.Atria/ReloadPrefs</string>
 		</dict>
@@ -74,9 +74,9 @@
 			<key>cellClass</key>
 			<string>HBColorPickerTableCell</string>
 			<key>label</key>
-			<string>Blur Tint</string>
+			<string>模糊着色</string>
 			<key>showAlphaSlider</key>
-			<false/>
+				<false/>
 			<key>default</key>
 			<string></string>
 			<key>defaults</key>
@@ -88,6 +88,6 @@
 		</dict>
 	</array>
 	<key>title</key>
-	<string>More Customization</string>
+	<string>更多自定义</string>
 </dict>
 </plist>

@@ -20,13 +20,13 @@
 
     ARITweakManager *manager = [ARITweakManager sharedInstance];
     if(![manager boolValueForKey:ARIDidSplashPreferenceKey]) {
-        ARISplashViewController *splash = [[ARISplashViewController alloc] initWithSubtitle:@"Getting started"];
-        [splash addEntry:@"3D touch an icon or triple tap your wallpaper to edit layout" image:[UIImage systemImageNamed:[manager firmwareVersion] >= 14 ? @"square.grid.3x3.fill.square" : @"square"]];
-        [splash addEntry:@"Drag the slider on the editor to see changes in real-time" image:[UIImage systemImageNamed:@"slider.horizontal.3"]];
-        [splash addEntry:@"Tap the label underneath the slider and type in a value for precise control" image:[UIImage systemImageNamed:@"wand.and.rays"]];
-        [splash addEntry:@"Tap this icon on the editor to edit layout for the current page only" image:[UIImage systemImageNamed:@"doc"]];
-        [splash addEntry:@"See the preference pane in the Settings app for even more options" image:[UIImage systemImageNamed:[manager firmwareVersion] >= 14 ? @"gearshape" : @"gear"]];
-        [splash addEntry:@"If you encounter a bug, don't hesitate to report it! Please include your device and iOS version." image:[UIImage systemImageNamed:[manager firmwareVersion] >= 14 ? @"ladybug" : @"ant"]];
+        ARISplashViewController *splash = [[ARISplashViewController alloc] initWithSubtitle:@"新手引导"];
+        [splash addEntry:@"长按（3D Touch）桌面图标，或在壁纸空白处三击，就能进入布局编辑" image:[UIImage systemImageNamed:[manager firmwareVersion] >= 14 ? @"square.grid.3x3.fill.square" : @"square"]];
+        [splash addEntry:@"拖动编辑器里的滑块，桌面会实时跟着变" image:[UIImage systemImageNamed:@"slider.horizontal.3"]];
+        [splash addEntry:@"点滑块下方那个数字，可以直接输入精确数值" image:[UIImage systemImageNamed:@"wand.and.rays"]];
+        [splash addEntry:@"点编辑器上这个页面图标，可以只改当前这一页" image:[UIImage systemImageNamed:@"doc"]];
+        [splash addEntry:@"更多选项在“设置”App 的 Atria 面板里" image:[UIImage systemImageNamed:[manager firmwareVersion] >= 14 ? @"gearshape" : @"gear"]];
+        [splash addEntry:@"遇到问题欢迎反馈，记得带上机型和系统版本。" image:[UIImage systemImageNamed:[manager firmwareVersion] >= 14 ? @"ladybug" : @"ant"]];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [[objc_getClass("SBIconController") sharedInstance] presentViewController:splash animated:YES completion:nil];
         });

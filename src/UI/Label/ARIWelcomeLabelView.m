@@ -57,19 +57,19 @@
 }
 
 - (NSString *)processRawText:(NSString *)rawText isScheduledUpdate:(BOOL)scheduled {
-    NSString *greeting = @"Welcome";
+    NSString *greeting = @"欢迎";
     NSDateComponents *components = [_calendar components:NSCalendarUnitHour fromDate:[NSDate date]];
     if(components.hour >= 4 && components.hour < 12) {
-        greeting = @"Good morning";
+        greeting = @"早上好";
     } else if(components.hour >= 12 && components.hour < 18) {
-        greeting = @"Good afternoon";
+        greeting = @"下午好";
     } else if(components.hour >= 18 || components.hour < 4) {
-        greeting = @"Good evening";
+        greeting = @"晚上好";
     }
 
     rawText = [rawText stringByReplacingOccurrencesOfString:@"\%GREETING\%" withString:greeting];
     rawText = [rawText stringByReplacingOccurrencesOfString:@"\%TEMPERATURE\%" withString:[_weatherUpdater _temperature] ?: @"--"];
-    rawText = [rawText stringByReplacingOccurrencesOfString:@"\%LOCATION\%" withString:[_weatherUpdater _locationName] ?: @"Unknown"];
+    rawText = [rawText stringByReplacingOccurrencesOfString:@"\%LOCATION\%" withString:[_weatherUpdater _locationName] ?: @"未知"];
     _imageView.image = [_weatherUpdater _conditionsImage];
     return rawText;
 }
