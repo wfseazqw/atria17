@@ -518,11 +518,61 @@
 }
 
 - (SBRootFolderView *)rootFolderView {
-    return [[[objc_getClass("SBIconController") sharedInstance] _rootFolderController] rootFolderView];
+    // iOS 17 上 SBIconController 取根文件夹视图的私有入口可能变化，这里多路回退并记录实际命中的路径
+    static SBRootFolderView *cachedRootFolderView = nil;
+    if(cachedRootFolderView) return cachedRootFolderView;
+
+    id iconController = [objc_getClass("SBIconController") sharedInstance];
+    id rootController = nil;
+    @try {
+        if([iconController respondsToSelector:@selector(_rootFolderController)]) {
+            rootController = [iconController _rootFolderController];
+        }
+        if(!rootController && [iconController respondsToSelector:@selector(rootFolderController)]) {
+            rootController = [iconController rootFolderController];
+        }
+    } @catch (NSException *e) {
+        AtriaLogLine([NSString stringWithFormat:@"[dbg] rootFolderController exception: %@ - %@", e.name, e.reason]);
+    }
+
+    SBRootFolderView *rfv = nil;
+    @try {
+        if([rootController respondsToSelector:@selector(rootFolderView)]) {
+            rfv = [rootController rootFolderView];
+        }
+        if(!rfv) {
+            id candidate = [rootController valueForKey:@"_rootFolderView"];
+            if([candidate isKindOfClass:[UIView class]]) rfv = (SBRootFolderView *)candidate;
+        }
+    } @catch (NSException *e) {
+        AtriaLogLine([NSString stringWithFormat:@"[dbg] rootFolderView exception: %@ - %@", e.name, e.reason]);
+    }
+
+    static BOOL loggedRootLookup = NO;
+    if(!loggedRootLookup) {
+        loggedRootLookup = YES;
+        AtriaLogLine([NSString stringWithFormat:@"[dbg] rootFolderView lookup: controller=%@ rfv=%@",
+                      rootController ? NSStringFromClass([rootController class]) : @"(nil)",
+                      rfv ? NSStringFromClass([rfv class]) : @"(nil)"]);
+    }
+
+    cachedRootFolderView = rfv;
+    return rfv;
 }
 
 - (NSArray<SBIconListView *> *)allRootListViews {
-    return [self rootFolderView].iconListViews;
+    SBRootFolderView *rfv = [self rootFolderView];
+    @try {
+        if([rfv respondsToSelector:@selector(iconListViews)]) {
+            NSArray *lists = [rfv iconListViews];
+            if([lists isKindOfClass:[NSArray class]]) return lists;
+        }
+        id lists = [rfv valueForKey:@"_iconListViews"];
+        if([lists isKindOfClass:[NSArray class]]) return (NSArray<SBIconListView *> *)lists;
+    } @catch (NSException *e) {
+        AtriaLogLine([NSString stringWithFormat:@"[dbg] allRootListViews exception: %@ - %@", e.name, e.reason]);
+    }
+    return @[];
 }
 
 - (NSUInteger)indexOfListView:(SBIconListView *)target {
@@ -530,11 +580,40 @@
 }
 
 - (SBIconListView *)firstIconListView {
-    return [[self rootFolderView] firstIconListView];
+    SBRootFolderView *rfv = [self rootFolderView];
+    @try {
+        if([rfv respondsToSelector:@selector(firstIconListView)]) return [rfv firstIconListView];
+    } @catch (NSException *e) {
+        AtriaLogLine([NSString stringWithFormat:@"[dbg] firstIconListView exception: %@ - %@", e.name, e.reason]);
+    }
+    NSArray *lists = [self allRootListViews];
+    return [lists count] ? lists[0] : nil;
 }
 
 - (SBIconListView *)currentListView {
-    return [self rootFolderView].currentIconListView;
+    SBRootFolderView *rfv = [self rootFolderView];
+    SBIconListView *lw = nil;
+    @try {
+        if([rfv respondsToSelector:@selector(currentIconListView)]) {
+            lw = rfv.currentIconListView;
+        }
+        if(!lw) {
+            id candidate = [rfv valueForKey:@"_currentIconListView"];
+            if([candidate isKindOfClass:[UIView class]]) lw = (SBIconListView *)candidate;
+        }
+        if(!lw) lw = rfv.firstIconListView;
+    } @catch (NSException *e) {
+        AtriaLogLine([NSString stringWithFormat:@"[dbg] currentListView exception: %@ - %@", e.name, e.reason]);
+    }
+
+    static BOOL loggedCurrentList = NO;
+    if(!loggedCurrentList && lw) {
+        loggedCurrentList = YES;
+        AtriaLogLine([NSString stringWithFormat:@"[dbg] currentListView resolved: %@ location=%@",
+                      NSStringFromClass([lw class]),
+                      [lw respondsToSelector:@selector(iconLocation)] ? [lw iconLocation] : @"(n/a)"]);
+    }
+    return lw;
 }
 
 // Returns a string which serves as a prefix for per-page layout settings

@@ -54,39 +54,67 @@ void AtriaLogLine(NSString *line) {
     if(toggle) {
         // Start edit
         if(_isEditing) return;
-        _isEditing = YES;
-        _editingLocation = targetLoc;
+        AtriaLogLine([NSString stringWithFormat:@"[dbg] toggleEditView YES loc=%@", targetLoc]);
+        @try {
+            _isEditing = YES;
+            _editingLocation = targetLoc;
 
-        UIViewController *iconController = (UIViewController *)[objc_getClass("SBIconController") sharedInstance];
+            UIViewController *iconController = (UIViewController *)[objc_getClass("SBIconController") sharedInstance];
+            AtriaLogLine([NSString stringWithFormat:@"[dbg] iconController=%@", iconController ? NSStringFromClass([iconController class]) : @"(nil)"]);
 
-        // Check if this list view has custom config
-        _current = [[ARITweakManager sharedInstance] currentListView];
-        // No per page layout for the following
-        if(![targetLoc isEqualToString:@"dock"] && ![targetLoc isEqualToString:@"pagedot"]) {
-            _singleList = [[ARITweakManager sharedInstance] doesCustomConfigForListViewExist:_current];
-        } else {
-            _singleList = NO;
-        }
-
-        ARIEditingMainView *view = [[ARIEditingMainView alloc] initWithTarget:targetLoc];
-        view.alpha = 0.0F;
-        view.transform = CGAffineTransformMakeScale(0.25F, 0.25F);
-        [iconController.view addSubview:view];
-        [NSLayoutConstraint activateConstraints:@[
-            [view.centerXAnchor constraintEqualToAnchor:iconController.view.centerXAnchor],
-        ]];
-
-        [UIView animateWithDuration:0.2f
-            delay:0.25f
-            options:UIViewAnimationOptionCurveEaseOut
-            animations:^{
-                view.alpha = 1.0F;
-                view.transform = CGAffineTransformMakeScale(1.0F, 1.0F);
+            // Check if this list view has custom config
+            _current = [[ARITweakManager sharedInstance] currentListView];
+            AtriaLogLine([NSString stringWithFormat:@"[dbg] currentListView=%@", _current ? NSStringFromClass([_current class]) : @"(nil)"]);
+            // No per page layout for the following
+            if(![targetLoc isEqualToString:@"dock"] && ![targetLoc isEqualToString:@"pagedot"]) {
+                _singleList = [[ARITweakManager sharedInstance] doesCustomConfigForListViewExist:_current];
+            } else {
+                _singleList = NO;
             }
-            completion:^(BOOL finished) {
-                [view toggleOptionsView:nil];
-            }];
-        self.editView = view;
+            AtriaLogLine(@"[dbg] singleList computed");
+
+            ARIEditingMainView *view = [[ARIEditingMainView alloc] initWithTarget:targetLoc];
+            AtriaLogLine([NSString stringWithFormat:@"[dbg] edit view created: %@", view ? @"ok" : @"(nil)"]);
+            if(!view) {
+                AtriaLogLine(@"[dbg] aborting: edit view is nil");
+                _isEditing = NO;
+                _editingLocation = nil;
+                return;
+            }
+            view.alpha = 0.0F;
+            view.transform = CGAffineTransformMakeScale(0.25F, 0.25F);
+            UIView *hostView = iconController.view;
+            AtriaLogLine([NSString stringWithFormat:@"[dbg] host view=%@", hostView ? NSStringFromClass([hostView class]) : @"(nil)"]);
+            [hostView addSubview:view];
+            AtriaLogLine(@"[dbg] edit view added to springboard view");
+            [NSLayoutConstraint activateConstraints:@[
+                [view.centerXAnchor constraintEqualToAnchor:hostView.centerXAnchor],
+            ]];
+            AtriaLogLine(@"[dbg] centerX constraint activated");
+
+            [UIView animateWithDuration:0.2f
+                delay:0.25f
+                options:UIViewAnimationOptionCurveEaseOut
+                animations:^{
+                    view.alpha = 1.0F;
+                    view.transform = CGAffineTransformMakeScale(1.0F, 1.0F);
+                }
+                completion:^(BOOL finished) {
+                    @try {
+                        AtriaLogLine(@"[dbg] animation finished, calling toggleOptionsView");
+                        [view toggleOptionsView:nil];
+                        AtriaLogLine(@"[dbg] toggleOptionsView returned");
+                    } @catch (NSException *e) {
+                        AtriaLogLine([NSString stringWithFormat:@"[dbg] toggleOptionsView exception: %@ - %@", e.name, e.reason]);
+                    }
+                }];
+            self.editView = view;
+            AtriaLogLine(@"[dbg] toggleEditView YES completed");
+        } @catch (NSException *e) {
+            AtriaLogLine([NSString stringWithFormat:@"[dbg] toggleEditView exception: %@ - %@", e.name, e.reason]);
+            _isEditing = NO;
+            _editingLocation = nil;
+        }
     } else {
         // End edit
         if(!_isEditing) return;
@@ -232,6 +260,11 @@ void AtriaLogLine(NSString *line) {
 // Collection view delegate and data source
 
 - (ARISettingCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    static int atriaCellLogCount = 0;
+    if(atriaCellLogCount < 5) {
+        atriaCellLogCount++;
+        AtriaLogLine([NSString stringWithFormat:@"[dbg] cellForItem row=%ld", (long)indexPath.row]);
+    }
     ARISettingCell *cell = (ARISettingCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"EditCell" forIndexPath:indexPath];
     NSString *key = self.editView.validsettingsForTarget[indexPath.row];
     cell.opLabel.text = [[ARITweakManager sharedInstance] getSettingByKey:key].translation;
@@ -264,7 +297,9 @@ void AtriaLogLine(NSString *line) {
 - (void)collectionView:(UICollectionView *)collectionView
     didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSString *key = self.editView.validsettingsForTarget[indexPath.row];
+    AtriaLogLine([NSString stringWithFormat:@"[dbg] didSelect key=%@", key]);
     [self.editView setupForSettingKey:key];
+    AtriaLogLine(@"[dbg] setupForSettingKey done");
     [self.editView toggleOptionsView:nil];
 }
 

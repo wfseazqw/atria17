@@ -7,6 +7,7 @@
 #import "../Manager/ARIEditManager.h"
 #import "../Manager/ARITweakManager.h"
 #import "ARISettingCollectionViewHost.h"
+#import "../Hooks/Shared.h"
 
 #define CLAMP(x, min, max) x<min ? min : x> max ? max : x;
 
@@ -29,6 +30,7 @@
 - (instancetype)initWithTarget:(NSString *)targetLoc {
     self = [super init];
     if(self) {
+        AtriaLogLine([NSString stringWithFormat:@"[dbg] EditingMainView init start target=%@", targetLoc]);
         NSArray *allSettingsKeys = [[ARITweakManager sharedInstance] editorSettingsKeys];
         _validsettingsForTarget = [NSMutableArray new];
         for(NSString *setting in allSettingsKeys) {
@@ -37,6 +39,10 @@
             }
         }
         _showTooltips = [[ARITweakManager sharedInstance] boolValueForKey:@"showTooltips"];
+        AtriaLogLine([NSString stringWithFormat:@"[dbg] settings gathered: all=%lu valid=%lu tooltips=%d",
+                      (unsigned long)[allSettingsKeys count],
+                      (unsigned long)[_validsettingsForTarget count],
+                      _showTooltips]);
 
         // Subtle shadow to make the editor pop from the homescreen background
         self.layer.cornerRadius = 12;
@@ -200,7 +206,9 @@
                    name:UIKeyboardDidHideNotification
                  object:nil];
 
+        AtriaLogLine(@"[dbg] EditingMainView layout done");
         [self updateIsSingleListView];
+        AtriaLogLine(@"[dbg] EditingMainView init end");
     }
     return self;
 }
@@ -326,6 +334,8 @@
     // Present collection view with settings options
     ARITweakManager *manager = [ARITweakManager sharedInstance];
     [manager feedbackForButton];
+    AtriaLogLine([NSString stringWithFormat:@"[dbg] toggleOptionsView height=%f base=%f",
+                  _heightAnchor.constant, [self getBaseHeight]]);
 
     if(_heightAnchor.constant == [self getBaseHeight]) {
         // Activate
@@ -337,6 +347,7 @@
         }
 
         _collection = [[ARISettingCollectionViewHost alloc] init];
+        AtriaLogLine(@"[dbg] collection host created");
         _collection.translatesAutoresizingMaskIntoConstraints = NO;
         _collection.alpha = 0;
         [self addSubview:_collection];
@@ -350,6 +361,7 @@
         ]];
         [self layoutIfNeeded];
         [_collection setupGradient];
+        AtriaLogLine(@"[dbg] collection host laid out");
 
         [UIView animateWithDuration:0.3f
                          animations:^{

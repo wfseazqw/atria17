@@ -6,13 +6,16 @@
 #import "ARIEditingControlsView.h"
 #import "../Manager/ARIEditManager.h"
 #import "../Manager/ARITweakManager.h"
+#import "../Hooks/Shared.h"
 
 @implementation ARIEditingControlsView
 
 - (instancetype)initWithTargetSetting:(NSString *)key {
     self = [super init];
     if(self) {
+        AtriaLogLine([NSString stringWithFormat:@"[dbg] ControlsView init key=%@", key]);
         ARIOption *option = [[ARITweakManager sharedInstance] getSettingByKey:key];
+        AtriaLogLine([NSString stringWithFormat:@"[dbg] option=%@", option ? @"ok" : @"(nil)"]);
         float lower = option.lowerLimit;
         float upper = option.upperLimit;
 
