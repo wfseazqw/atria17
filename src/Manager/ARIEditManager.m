@@ -130,32 +130,57 @@ void AtriaLogLine(NSString *line) {
                 _editingLocation = nil;
                 return;
             }
-            [hostView addSubview:view];
-            AtriaLogLine(@"[dbg] edit view added to springboard view");
-            [NSLayoutConstraint activateConstraints:@[
-                [view.centerXAnchor constraintEqualToAnchor:hostView.centerXAnchor],
-            ]];
-            AtriaLogLine(@"[dbg] centerX constraint activated");
-
-            [UIView animateWithDuration:0.2f
-                delay:0.25f
-                options:UIViewAnimationOptionCurveEaseOut
-                animations:^{
-                    view.alpha = 1.0F;
-                    view.transform = CGAffineTransformMakeScale(1.0F, 1.0F);
-                }
-                completion:^(BOOL finished) {
-                    @try {
-                        AtriaLogLine([NSString stringWithFormat:@"[dbg] animation finished, inWindow=%d frame=%@ alpha=%f",
-                                      view.window ? 1 : 0,
-                                      NSStringFromCGRect(view.frame),
-                                      view.alpha]);
-                        [view toggleOptionsView:nil];
-                        AtriaLogLine(@"[dbg] toggleOptionsView returned");
-                    } @catch (NSException *e) {
-                        AtriaLogLine([NSString stringWithFormat:@"[dbg] toggleOptionsView exception: %@ - %@", e.name, e.reason]);
+            self.editView = view;
+            // 选完菜单时弹窗还在消失动画里，此刻的 keyWindow 可能还是弹窗所在的窗口；
+            // 等弹窗完全消失后再挂载，优先挂到当时的前台 keyWindow 上
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                @try {
+                    UIView *keyWindowView = nil;
+                    for(UIScene *scene in [[UIApplication sharedApplication] connectedScenes]) {
+                        if(![scene isKindOfClass:[UIWindowScene class]]) continue;
+                        for(UIWindow *win in [(UIWindowScene *)scene windows]) {
+                            if(win.isKeyWindow) {
+                                keyWindowView = win;
+                                break;
+                            }
+                        }
+                        if(keyWindowView) break;
                     }
-                }];
+                    UIView *mount = keyWindowView ? keyWindowView : hostView;
+                    if(!mount) mount = [[[UIApplication sharedApplication] windows] firstObject];
+                    if(!mount) {
+                        AtriaLogLine(@"[dbg] aborting: no mount view");
+                        return;
+                    }
+                    [mount addSubview:view];
+                    AtriaLogLine([NSString stringWithFormat:@"[dbg] mounted on %@ inWindow=%d",
+                                  NSStringFromClass([mount class]), view.window ? 1 : 0]);
+                    [NSLayoutConstraint activateConstraints:@[
+                        [view.centerXAnchor constraintEqualToAnchor:mount.centerXAnchor],
+                    ]];
+                    [UIView animateWithDuration:0.2f
+                        delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseOut
+                        animations:^{
+                            view.alpha = 1.0F;
+                            view.transform = CGAffineTransformMakeScale(1.0F, 1.0F);
+                        }
+                        completion:^(BOOL finished) {
+                            @try {
+                                AtriaLogLine([NSString stringWithFormat:@"[dbg] shown inWindow=%d frame=%@ alpha=%f",
+                                              view.window ? 1 : 0,
+                                              NSStringFromCGRect(view.frame),
+                                              view.alpha]);
+                                [view toggleOptionsView:nil];
+                                AtriaLogLine(@"[dbg] toggleOptionsView returned");
+                            } @catch (NSException *e) {
+                                AtriaLogLine([NSString stringWithFormat:@"[dbg] toggleOptionsView exception: %@ - %@", e.name, e.reason]);
+                            }
+                        }];
+                } @catch (NSException *e) {
+                    AtriaLogLine([NSString stringWithFormat:@"[dbg] mount exception: %@ - %@", e.name, e.reason]);
+                }
+            });
             self.editView = view;
             AtriaLogLine(@"[dbg] toggleEditView YES completed");
         } @catch (NSException *e) {
