@@ -45,4 +45,8 @@ static inline BOOL Atria17CoreClassesAvailable(void) {
 }
 
 // 诊断日志（同时写 /tmp 和 /var/mobile/Documents，方便 Filza 查看）
+#ifdef __cplusplus
+extern "C" void AtriaLogLine(NSString *line);
+#else
 void AtriaLogLine(NSString *line);
+#endif
