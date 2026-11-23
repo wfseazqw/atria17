@@ -528,8 +528,8 @@
         if([iconController respondsToSelector:@selector(_rootFolderController)]) {
             rootController = [iconController _rootFolderController];
         }
-        if(!rootController && [iconController respondsToSelector:@selector(rootFolderController)]) {
-            rootController = [iconController rootFolderController];
+        if(!rootController) {
+            @try { rootController = [iconController valueForKey:@"rootFolderController"]; } @catch (NSException *e) {}
         }
     } @catch (NSException *e) {
         AtriaLogLine([NSString stringWithFormat:@"[dbg] rootFolderController exception: %@ - %@", e.name, e.reason]);
