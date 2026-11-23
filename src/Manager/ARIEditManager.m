@@ -4,6 +4,7 @@
 
 #include <objc/runtime.h>
 #include <stdio.h>
+#import <dlfcn.h>
 
 void AtriaLogLine(NSString *line) {
     @autoreleasepool {
@@ -21,6 +22,38 @@ void AtriaLogLine(NSString *line) {
             }
         }
     }
+}
+
+// 用 dladdr 找到本 dylib 的真实落盘路径，图标就放在它同级的 AtriaIcons 目录里，
+// 这样不用猜 RootHide 的 jbroot 前缀
+static NSString *ARIIconDirectoryPath(void) {
+    static NSString *cachedDir = nil;
+    static BOOL tried = NO;
+    if(tried) return cachedDir;
+    tried = YES;
+
+    Dl_info info;
+    if(dladdr((const void *)&ARIIconDirectoryPath, &info) == 0 || !info.dli_fname) {
+        AtriaLogLine(@"[icons] dladdr failed");
+        return nil;
+    }
+    NSString *dylibPath = @(info.dli_fname);
+    NSString *base = [dylibPath stringByDeletingLastPathComponent];
+    AtriaLogLine([NSString stringWithFormat:@"[icons] dylib=%@", dylibPath]);
+
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSArray *candidates = @[
+        [base stringByAppendingPathComponent:@"AtriaIcons"],
+        [base stringByAppendingPathComponent:@"Atria/Editor"],
+    ];
+    for(NSString *candidate in candidates) {
+        if([fm fileExistsAtPath:candidate]) {
+            cachedDir = candidate;
+            break;
+        }
+    }
+    AtriaLogLine([NSString stringWithFormat:@"[icons] dir=%@", cachedDir ?: @"(nil)"]);
+    return cachedDir;
 }
 
 @interface ARIEditManager ()
@@ -351,13 +384,28 @@ void AtriaLogLine(NSString *line) {
     }
 
     // Calculate path and set image
-    // iOS 17 / RootHide：优先用已注册的 bundle 定位资源，避免依赖 /var/jb 前缀
-    NSBundle *prefsBundle = [NSBundle bundleWithIdentifier:@"me.lau.AtriaPrefs"];
-    NSString *path = [prefsBundle pathForResource:key ofType:@"png" inDirectory:@"Editor"];
-    if(!path) {
-        path = [NSString stringWithFormat:@THEOS_PACKAGE_INSTALL_PREFIX "/Library/PreferenceBundles/AtriaPrefs.bundle/Editor/%@.png", key];
+    // 1) 优先用 dylib 同级 AtriaIcons 目录（随插件本体安装，RootHide 下最稳）
+    NSString *path = nil;
+    NSString *iconDir = ARIIconDirectoryPath();
+    if(iconDir) path = [iconDir stringByAppendingPathComponent:[key stringByAppendingString:@".png"]];
+    // 2) 再退到 PreferenceBundle 的资源
+    if(!path || ![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSBundle *prefsBundle = [NSBundle bundleWithIdentifier:@"me.lau.AtriaPrefs"];
+        path = [prefsBundle pathForResource:key ofType:@"png" inDirectory:@"Editor"];
     }
-    cell.img.image = [[UIImage imageWithContentsOfFile:path] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] ?: [UIImage systemImageNamed:@"gear"];
+    if(!path || ![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSString *fallback = [NSString stringWithFormat:@THEOS_PACKAGE_INSTALL_PREFIX "/Library/PreferenceBundles/AtriaPrefs.bundle/Editor/%@.png", key];
+        path = fallback;
+    }
+    static int atriaIconLogCount = 0;
+    if(atriaIconLogCount < 4) {
+        atriaIconLogCount++;
+        AtriaLogLine([NSString stringWithFormat:@"[icons] key=%@ path=%@ exists=%d",
+                      key, path ?: @"(nil)",
+                      (path && [[NSFileManager defaultManager] fileExistsAtPath:path]) ? 1 : 0]);
+    }
+    UIImage *iconImage = path ? [UIImage imageWithContentsOfFile:path] : nil;
+    cell.img.image = [iconImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] ?: [UIImage systemImageNamed:@"gear"];
 
     return cell;
 }

@@ -1,0 +1,301 @@
+﻿2026-11-23T03:49:41.3704310Z Current runner version: '2.338.2'
+2026-11-23T03:49:41.3726170Z ##[group]Runner Image Provisioner
+2026-11-23T03:49:41.3726820Z Hosted Compute Agent
+2026-11-23T03:49:41.3727210Z Version: 20261111.635
+2026-11-23T03:49:41.3727710Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+2026-11-23T03:49:41.3728210Z Build Date: 2026-11-11T01:49:01Z
+2026-11-23T03:49:41.3728720Z Worker ID: {38f45e95-665f-4178-a0ea-bef19c6710a0}
+2026-11-23T03:49:41.3729180Z Region: westus
+2026-11-23T03:49:41.3729610Z Cloud: MacCloud
+2026-11-23T03:49:41.3729980Z ##[endgroup]
+2026-11-23T03:49:41.3731020Z ##[group]Operating System
+2026-11-23T03:49:41.3731420Z macOS
+2026-11-23T03:49:41.3731830Z 15.8.2
+2026-11-23T03:49:41.3732190Z 24H232
+2026-11-23T03:49:41.3732570Z ##[endgroup]
+2026-11-23T03:49:41.3732970Z ##[group]Runner Image
+2026-11-23T03:49:41.3733510Z Image: macos-15-arm64
+2026-11-23T03:49:41.3733970Z Version: 20261118.0550.1
+2026-11-23T03:49:41.3734940Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20261118.0550/images/macos/macos-15-arm64-Readme.md
+2026-11-23T03:49:41.3736170Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20261118.0550
+2026-11-23T03:49:41.3736930Z ##[endgroup]
+2026-11-23T03:49:41.3737840Z ##[group]GITHUB_TOKEN Permissions
+2026-11-23T03:49:41.3739020Z Contents: read
+2026-11-23T03:49:41.3739470Z Metadata: read
+2026-11-23T03:49:41.3739880Z Packages: read
+2026-11-23T03:49:41.3740310Z ##[endgroup]
+2026-11-23T03:49:41.3741860Z Secret source: Actions
+2026-11-23T03:49:41.3742490Z Cache mode: write
+2026-11-23T03:49:41.3742970Z Prepare workflow directory
+2026-11-23T03:49:41.3998170Z Prepare all required actions
+2026-11-23T03:49:41.4032850Z Getting action download info
+2026-11-23T03:49:41.6035590Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-23T03:49:41.8212430Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-23T03:49:42.0038260Z Complete job name: build
+2026-11-23T03:49:42.0590080Z ##[group]Run actions/checkout@v4
+2026-11-23T03:49:42.0590630Z with:
+2026-11-23T03:49:42.0590950Z   repository: wfseazqw/atria17
+2026-11-23T03:49:42.0593430Z   token: ***
+2026-11-23T03:49:42.0593730Z   ssh-strict: true
+2026-11-23T03:49:42.0594050Z   ssh-user: git
+2026-11-23T03:49:42.0594370Z   persist-credentials: true
+2026-11-23T03:49:42.0594710Z   clean: true
+2026-11-23T03:49:42.0595030Z   sparse-checkout-cone-mode: true
+2026-11-23T03:49:42.0595410Z   fetch-depth: 1
+2026-11-23T03:49:42.0595720Z   fetch-tags: false
+2026-11-23T03:49:42.0596040Z   show-progress: true
+2026-11-23T03:49:42.0596350Z   lfs: false
+2026-11-23T03:49:42.0596650Z   submodules: false
+2026-11-23T03:49:42.0596970Z   set-safe-directory: true
+2026-11-23T03:49:42.0597320Z   allow-unsafe-pr-checkout: false
+2026-11-23T03:49:42.0597790Z ##[endgroup]
+2026-11-23T03:49:42.4356850Z Syncing repository: wfseazqw/atria17
+2026-11-23T03:49:42.4358390Z ##[group]Getting Git version info
+2026-11-23T03:49:42.4363030Z Working directory is '/Users/runner/work/atria17/atria17'
+2026-11-23T03:49:42.4377340Z [command]/opt/homebrew/bin/git version
+2026-11-23T03:49:42.4623130Z git version 2.56.1
+2026-11-23T03:49:42.4632950Z ##[endgroup]
+2026-11-23T03:49:42.4640340Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/a17bdcae-0d7c-4225-89da-965ea4eed131/.gitconfig'
+2026-11-23T03:49:42.4645480Z Temporarily overriding HOME='/Users/runner/work/_temp/a17bdcae-0d7c-4225-89da-965ea4eed131' before making global git config changes
+2026-11-23T03:49:42.4646660Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-23T03:49:42.4648570Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/atria17/atria17
+2026-11-23T03:49:42.4764700Z Deleting the contents of '/Users/runner/work/atria17/atria17'
+2026-11-23T03:49:42.4766810Z ##[group]Initializing the repository
+2026-11-23T03:49:42.4770010Z [command]/opt/homebrew/bin/git init /Users/runner/work/atria17/atria17
+2026-11-23T03:49:42.5008080Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-23T03:49:42.5009090Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-23T03:49:42.5010260Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-23T03:49:42.5011170Z hint: call:
+2026-11-23T03:49:42.5011500Z hint:
+2026-11-23T03:49:42.5011970Z hint: 	git config --global init.defaultBranch <name>
+2026-11-23T03:49:42.5012460Z hint:
+2026-11-23T03:49:42.5012980Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-23T03:49:42.5013660Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-23T03:49:42.5014400Z hint:
+2026-11-23T03:49:42.5015490Z hint: 	git branch -m <name>
+2026-11-23T03:49:42.5015920Z hint:
+2026-11-23T03:49:42.5016450Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-23T03:49:42.5019240Z Initialized empty Git repository in /Users/runner/work/atria17/atria17/.git/
+2026-11-23T03:49:42.5025750Z [command]/opt/homebrew/bin/git remote add origin https://github.com/wfseazqw/atria17
+2026-11-23T03:49:42.5108510Z ##[endgroup]
+2026-11-23T03:49:42.5109150Z ##[group]Disabling automatic garbage collection
+2026-11-23T03:49:42.5111300Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-11-23T03:49:42.5177040Z ##[endgroup]
+2026-11-23T03:49:42.5177600Z ##[group]Setting up auth
+2026-11-23T03:49:42.5181740Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-23T03:49:42.5247820Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-23T03:49:42.6205160Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-23T03:49:42.6266470Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-23T03:49:42.7043660Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-23T03:49:42.7096080Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-23T03:49:42.7837920Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-23T03:49:42.7903930Z ##[endgroup]
+2026-11-23T03:49:42.7904920Z ##[group]Fetching the repository
+2026-11-23T03:49:42.7909220Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9678ec15944a60be27e4d57645b6d9457245070f:refs/remotes/origin/main
+2026-11-23T03:49:43.6653070Z From https://github.com/wfseazqw/atria17
+2026-11-23T03:49:43.6654180Z  * [new ref]         9678ec15944a60be27e4d57645b6d9457245070f -> origin/main
+2026-11-23T03:49:43.6656250Z ##[endgroup]
+2026-11-23T03:49:43.6657430Z ##[group]Determining the checkout info
+2026-11-23T03:49:43.6658290Z ##[endgroup]
+2026-11-23T03:49:43.6659180Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2026-11-23T03:49:43.6727090Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-23T03:49:43.6810930Z ##[group]Checking out the ref
+2026-11-23T03:49:43.6811670Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-11-23T03:49:43.7034610Z Switched to a new branch 'main'
+2026-11-23T03:49:43.7040130Z branch 'main' set up to track 'origin/main'.
+2026-11-23T03:49:43.7041840Z ##[endgroup]
+2026-11-23T03:49:43.7113500Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-11-23T03:49:43.7177410Z 9678ec15944a60be27e4d57645b6d9457245070f
+2026-11-23T03:49:43.7359540Z ##[group]Run brew install make ldid xz dpkg
+2026-11-23T03:49:43.7360070Z [36;1mbrew install make ldid xz dpkg[0m
+2026-11-23T03:49:43.7360810Z [36;1mecho "PATH=$(brew --prefix)/opt/make/libexec/gnubin:$PATH" >> $GITHUB_ENV[0m
+2026-11-23T03:49:43.7395710Z shell: /bin/bash -e {0}
+2026-11-23T03:49:43.7396080Z ##[endgroup]
+2026-11-23T03:49:44.8603920Z [33mWarning:[0m xz 5.8.4 is already installed and up-to-date.
+2026-11-23T03:49:44.8604510Z To reinstall 5.8.4, run:
+2026-11-23T03:49:44.8604770Z   brew reinstall xz
+2026-11-23T03:49:45.6637260Z [32m==>[0m [1mDownloading bottle manifests[0m
+2026-11-23T03:49:45.6737970Z ✔︎ Bottle Manifest make (4.4.1)
+2026-11-23T03:49:45.6784300Z ✔︎ Bottle Manifest ldid (2.1.5_2)
+2026-11-23T03:49:45.6785070Z ✔︎ Bottle Manifest dpkg (1.23.12)
+2026-11-23T03:49:45.7286470Z [34m==>[0m [1mWould install 3 formulae:[0m
+2026-11-23T03:49:45.7318750Z make  4.4.1
+2026-11-23T03:49:45.7326720Z ldid  2.1.5_2
+2026-11-23T03:49:45.7327120Z dpkg  1.23.12
+2026-11-23T03:49:45.7363100Z [34m==>[0m [1mWould install 1 dependency for ldid:[0m
+2026-11-23T03:49:45.7369910Z libplist 2.8.1
+2026-11-23T03:49:45.7475360Z [34m==>[0m [1mWould install 2 dependencies for dpkg:[0m
+2026-11-23T03:49:45.7476210Z gpatch  2.8.1
+2026-11-23T03:49:45.7519010Z libmd   1.3.0
+2026-11-23T03:49:45.7861390Z [32m==>[0m [1mFetching downloads for: [32mmake[39m, [32mldid[39m and [32mdpkg[39m[0m
+2026-11-23T03:49:46.2867980Z ✔︎ Bottle Manifest gpatch (2.8.1)
+2026-11-23T03:49:46.5137000Z ✔︎ Bottle Manifest libplist (2.8.1)
+2026-11-23T03:49:46.6045600Z ✔︎ Bottle Manifest libmd (1.3.0)
+2026-11-23T03:49:48.2555270Z ✔︎ Bottle make (4.4.1)
+2026-11-23T03:49:48.5066800Z ✔︎ Bottle libplist (2.8.1)
+2026-11-23T03:49:48.5669390Z ✔︎ Bottle ldid (2.1.5_2)
+2026-11-23T03:49:48.8243120Z ✔︎ Bottle gpatch (2.8.1)
+2026-11-23T03:49:48.8343570Z ✔︎ Bottle libmd (1.3.0)
+2026-11-23T03:49:48.8444650Z ✔︎ Bottle dpkg (1.23.12)
+2026-11-23T03:49:48.8446870Z [34m==>[0m [1mPouring make--4.4.1.arm64_sequoia.bottle.1.tar.gz[0m
+2026-11-23T03:49:49.8951580Z 🍺  /opt/homebrew/Cellar/make/4.4.1: 17 files, 1.3MB
+2026-11-23T03:49:49.9039040Z [32m==>[0m [1mInstalling ldid dependency: [32mlibplist[39m (2.8.1)[0m
+2026-11-23T03:49:49.9092150Z [34m==>[0m [1mPouring libplist--2.8.1.arm64_sequoia.bottle.tar.gz[0m
+2026-11-23T03:49:51.0213130Z 🍺  /opt/homebrew/Cellar/libplist/2.8.1: 33 files, 662.3KB
+2026-11-23T03:49:51.0233380Z [32m==>[0m [1mInstalling [32mldid[39m[0m
+2026-11-23T03:49:51.0249500Z [34m==>[0m [1mPouring ldid--2.1.5_2.arm64_sequoia.bottle.tar.gz[0m
+2026-11-23T03:49:52.0946070Z 🍺  /opt/homebrew/Cellar/ldid/2.1.5_2: 6 files, 274.7KB
+2026-11-23T03:49:52.1143120Z [32m==>[0m [1mInstalling dependencies for dpkg:[0m [32mgpatch[39m and [32mlibmd[39m[0m
+2026-11-23T03:49:52.1144050Z [32m==>[0m [1mInstalling dpkg dependency: [32mgpatch[39m (2.8.1)[0m
+2026-11-23T03:49:52.1162050Z [34m==>[0m [1mPouring gpatch--2.8.1.arm64_sequoia.bottle.tar.gz[0m
+2026-11-23T03:49:52.7265430Z 🍺  /opt/homebrew/Cellar/gpatch/2.8.1: 12 files, 417.8KB
+2026-11-23T03:49:52.7266740Z [32m==>[0m [1mInstalling dpkg dependency: [32mlibmd[39m (1.3.0)[0m
+2026-11-23T03:49:52.7285290Z [34m==>[0m [1mPouring libmd--1.3.0.arm64_sequoia.bottle.tar.gz[0m
+2026-11-23T03:49:53.8772470Z 🍺  /opt/homebrew/Cellar/libmd/1.3.0: 138 files, 1.1MB
+2026-11-23T03:49:53.8775250Z [32m==>[0m [1mInstalling [32mdpkg[39m[0m
+2026-11-23T03:49:53.8778220Z [34m==>[0m [1mPouring dpkg--1.23.12.arm64_sequoia.bottle.tar.gz[0m
+2026-11-23T03:49:55.3151700Z 🍺  /opt/homebrew/Cellar/dpkg/1.23.12: 646 files, 12.5MB
+2026-11-23T03:49:55.3156450Z [32m==>[0m [1mCaveats[0m
+2026-11-23T03:49:55.3156770Z [34m==>[0m [1mmake[0m
+2026-11-23T03:49:55.3157250Z GNU "make" has been installed as "gmake".
+2026-11-23T03:49:55.3158360Z If you need to use it as "make", you can add a "gnubin" directory
+2026-11-23T03:49:55.3160210Z to your PATH from your bashrc like:
+2026-11-23T03:49:55.3171100Z 
+2026-11-23T03:49:55.3173720Z     PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+2026-11-23T03:49:55.3174800Z [34m==>[0m [1mdpkg[0m
+2026-11-23T03:49:55.3178330Z This installation of dpkg is not configured to install software, so
+2026-11-23T03:49:55.3180910Z commands such as `dpkg -i`, `dpkg --configure` will fail.
+2026-11-23T03:49:55.3471630Z ##[group]Run set -euo pipefail
+2026-11-23T03:49:55.3472090Z [36;1mset -euo pipefail[0m
+2026-11-23T03:49:55.3472610Z [36;1mgit clone --recursive https://github.com/roothide/theos.git "$HOME/theos"[0m
+2026-11-23T03:49:55.3473080Z [36;1mecho "THEOS=$HOME/theos" >> "$GITHUB_ENV"[0m
+2026-11-23T03:49:55.3473430Z [36;1mecho "$HOME/theos/bin" >> "$GITHUB_PATH"[0m
+2026-11-23T03:49:55.3473910Z [36;1mecho "--- theos 目录 ---"[0m
+2026-11-23T03:49:55.3474140Z [36;1mls "$HOME/theos"[0m
+2026-11-23T03:49:55.3517070Z shell: /bin/bash -e {0}
+2026-11-23T03:49:55.3517280Z env:
+2026-11-23T03:49:55.3519340Z   PATH: /opt/homebrew/opt/make/libexec/gnubin:/opt/homebrew/opt/rustup/bin:/opt/homebrew/lib/ruby/gems/3.3.0/bin:/opt/homebrew/opt/ruby@3.3/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
+2026-11-23T03:49:55.3521180Z ##[endgroup]
+2026-11-23T03:49:55.4115390Z Cloning into '/Users/runner/theos'...
+2026-11-23T03:49:56.6561590Z Submodule 'vendor/dm.pl' (https://github.com/theos/dm.pl.git) registered for path 'vendor/dm.pl'
+2026-11-23T03:49:56.6891200Z Submodule 'vendor/include' (https://github.com/roothide/headers.git) registered for path 'vendor/include'
+2026-11-23T03:49:56.6904640Z Submodule 'vendor/lib' (https://github.com/roothide/lib.git) registered for path 'vendor/lib'
+2026-11-23T03:49:56.6906220Z Submodule 'vendor/logos' (https://github.com/theos/logos.git) registered for path 'vendor/logos'
+2026-11-23T03:49:56.6929080Z Submodule 'vendor/nic' (https://github.com/theos/nic.git) registered for path 'vendor/nic'
+2026-11-23T03:49:56.6949040Z Submodule 'vendor/orion' (https://github.com/theos/orion.git) registered for path 'vendor/orion'
+2026-11-23T03:49:56.6956240Z Submodule 'vendor/swift-support' (https://github.com/theos/swift-support.git) registered for path 'vendor/swift-support'
+2026-11-23T03:49:56.6978590Z Submodule 'vendor/templates' (https://github.com/theos/templates.git) registered for path 'vendor/templates'
+2026-11-23T03:49:56.7117540Z Cloning into '/Users/runner/theos/vendor/dm.pl'...
+2026-11-23T03:49:57.3759570Z Cloning into '/Users/runner/theos/vendor/include'...
+2026-11-23T03:49:58.2681810Z Cloning into '/Users/runner/theos/vendor/lib'...
+2026-11-23T03:49:59.1005660Z Cloning into '/Users/runner/theos/vendor/logos'...
+2026-11-23T03:49:59.9104710Z Cloning into '/Users/runner/theos/vendor/nic'...
+2026-11-23T03:50:00.8176660Z Cloning into '/Users/runner/theos/vendor/orion'...
+2026-11-23T03:50:01.9512090Z Cloning into '/Users/runner/theos/vendor/swift-support'...
+2026-11-23T03:50:02.5573940Z Cloning into '/Users/runner/theos/vendor/templates'...
+2026-11-23T03:50:03.3699010Z Submodule path 'vendor/dm.pl': checked out 'd9a3b72e274226dd2823c0a7c1d6d05099f4f51c'
+2026-11-23T03:50:03.4734580Z Submodule path 'vendor/include': checked out 'e1132e2bbc3ca15c50e2311bcd349cb7353409e1'
+2026-11-23T03:50:03.5343150Z Submodule path 'vendor/lib': checked out '85e9b5b8aff11bbefc59525c64c8f55149926e56'
+2026-11-23T03:50:03.5718580Z Submodule path 'vendor/logos': checked out '365a4e7028234e90bc2cbc724e5c87607130d3b3'
+2026-11-23T03:50:03.6064410Z Submodule path 'vendor/nic': checked out '4e7adcbeac2e4636b91e2f76341adfe4c4d0ceec'
+2026-11-23T03:50:03.6529010Z Submodule path 'vendor/orion': checked out '762159dc214d5aafa2edfc7554c659fc3c658b5b'
+2026-11-23T03:50:03.6591710Z Submodule 'fishhook' (https://github.com/facebook/fishhook.git) registered for path 'vendor/orion/fishhook'
+2026-11-23T03:50:03.6720450Z Cloning into '/Users/runner/theos/vendor/orion/fishhook'...
+2026-11-23T03:50:04.3688390Z Submodule path 'vendor/orion/fishhook': checked out 'aadc161ac3b80db07a9908851839a17ba63a9eb1'
+2026-11-23T03:50:04.4245910Z Submodule path 'vendor/swift-support': checked out '4cf59ff04cdb2ceb27ea2228753e0497297b6182'
+2026-11-23T03:50:04.5499390Z Submodule path 'vendor/templates': checked out '6c3944e281c4726f1383755d0fbb642840312d28'
+2026-11-23T03:50:04.5637370Z --- theos 目录 ---
+2026-11-23T03:50:04.5847220Z bin
+2026-11-23T03:50:04.5848030Z CODE_OF_CONDUCT.md
+2026-11-23T03:50:04.5848510Z docs
+2026-11-23T03:50:04.5848810Z extras
+2026-11-23T03:50:04.5849230Z include
+2026-11-23T03:50:04.5849490Z lib
+2026-11-23T03:50:04.5852210Z LICENSE.md
+2026-11-23T03:50:04.5852750Z makefiles
+2026-11-23T03:50:04.5853660Z mod
+2026-11-23T03:50:04.5854140Z package.json
+2026-11-23T03:50:04.5854650Z Prefix.pch
+2026-11-23T03:50:04.5854990Z README.md
+2026-11-23T03:50:04.5855550Z sdks
+2026-11-23T03:50:04.5856050Z templates
+2026-11-23T03:50:04.5856550Z toolchain
+2026-11-23T03:50:04.5857620Z vendor
+2026-11-23T03:50:04.5939820Z ##[group]Run set -euo pipefail
+2026-11-23T03:50:04.5940630Z [36;1mset -euo pipefail[0m
+2026-11-23T03:50:04.5941340Z [36;1mmkdir -p "$THEOS/sdks"[0m
+2026-11-23T03:50:04.5942810Z [36;1mcurl -fL -o /tmp/sdk.tar.xz https://github.com/theos/sdks/releases/latest/download/iPhoneOS16.5.sdk.tar.xz[0m
+2026-11-23T03:50:04.5944200Z [36;1mtar -xJf /tmp/sdk.tar.xz -C "$THEOS/sdks"[0m
+2026-11-23T03:50:04.5944940Z [36;1mecho "--- SDK 列表 ---"[0m
+2026-11-23T03:50:04.5945620Z [36;1mls "$THEOS/sdks"[0m
+2026-11-23T03:50:04.6017930Z shell: /bin/bash -e {0}
+2026-11-23T03:50:04.6018300Z env:
+2026-11-23T03:50:04.6020420Z   PATH: /opt/homebrew/opt/make/libexec/gnubin:/opt/homebrew/opt/rustup/bin:/opt/homebrew/lib/ruby/gems/3.3.0/bin:/opt/homebrew/opt/ruby@3.3/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
+2026-11-23T03:50:04.6022410Z   THEOS: /Users/runner/theos
+2026-11-23T03:50:04.6022800Z ##[endgroup]
+2026-11-23T03:50:04.6714200Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-11-23T03:50:04.6740980Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-11-23T03:50:04.6741640Z 
+2026-11-23T03:50:04.9294760Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-23T03:50:04.9295110Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-23T03:50:05.1208590Z 
+2026-11-23T03:50:05.1209290Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-23T03:50:05.2337400Z 
+2026-11-23T03:50:05.2338550Z 100 16.6M  100 16.6M    0     0  29.5M      0 --:--:-- --:--:-- --:--:-- 29.5M
+2026-11-23T03:50:08.4005970Z --- SDK 列表 ---
+2026-11-23T03:50:08.4108450Z iPhoneOS16.5.sdk
+2026-11-23T03:50:08.4281700Z ##[group]Run make clean || true
+2026-11-23T03:50:08.4282210Z [36;1mmake clean || true[0m
+2026-11-23T03:50:08.4282490Z [36;1mmake package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=roothide[0m
+2026-11-23T03:50:08.4328780Z shell: /bin/bash -e {0}
+2026-11-23T03:50:08.4329020Z env:
+2026-11-23T03:50:08.4330980Z   PATH: /opt/homebrew/opt/make/libexec/gnubin:/opt/homebrew/opt/rustup/bin:/opt/homebrew/lib/ruby/gems/3.3.0/bin:/opt/homebrew/opt/ruby@3.3/bin:/Users/runner/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/runner/.cargo/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/local/sbin:/Users/runner/bin:/Users/runner/.yarn/bin:/Users/runner/Library/Android/sdk/tools:/Users/runner/Library/Android/sdk/platform-tools:/Library/Frameworks/Python.framework/Versions/Current/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/bin:/bin:/usr/sbin:/sbin:/Users/runner/.dotnet/tools
+2026-11-23T03:50:08.4333380Z   THEOS: /Users/runner/theos
+2026-11-23T03:50:08.4333740Z ##[endgroup]
+2026-11-23T03:50:14.0704670Z [0;36m==> [1;39mCleaning…[m
+2026-11-23T03:50:15.3334960Z [1;31m> [1;3;39mMaking all for tweak Atria…[m
+2026-11-23T03:50:20.4390630Z [0;32m==> [1;39mCompiling src/Editor/ARIEditingControlsView.m (arm64e)…[m
+2026-11-23T03:50:20.5216450Z [0;32m==> [1;39mCompiling src/Editor/ARISettingCollectionViewHost.m (arm64e)…[m
+2026-11-23T03:50:20.6503590Z [0;31m==> [1;39mPreprocessing src/Hooks/AppLibrary.xm…[m
+2026-11-23T03:50:20.7413610Z [0;32m==> [1;39mCompiling src/Editor/ARISettingCell.m (arm64e)…[m
+2026-11-23T03:50:20.7505140Z [0;31m==> [1;39mPreprocessing src/Hooks/DockView.xm…[m
+2026-11-23T03:50:20.8094650Z [0;32m==> [1;39mCompiling src/Editor/ARIEditingMainView.m (arm64e)…[m
+2026-11-23T03:50:20.8171880Z [0;31m==> [1;39mPreprocessing src/Hooks/Helper.xm…[m
+2026-11-23T03:50:20.8281330Z [0;31m==> [1;39mPreprocessing src/Hooks/GridLayout.xm…[m
+2026-11-23T03:50:20.8798350Z [0;31m==> [1;39mPreprocessing src/Hooks/IconState.xm…[m
+2026-11-23T03:50:20.9003260Z [0;31m==> [1;39mPreprocessing src/Hooks/IconView.xm…[m
+2026-11-23T03:50:20.9191220Z [0;31m==> [1;39mPreprocessing src/Hooks/MainLayout.xm…[m
+2026-11-23T03:50:20.9763320Z [0;31m==> [1;39mPreprocessing src/Hooks/PageDots.xm…[m
+2026-11-23T03:50:21.0094860Z [0;31m==> [1;39mPreprocessing src/Hooks/Probe.x…[m
+2026-11-23T03:50:21.0588890Z [1msrc/Manager/ARITweakManager.m:532:46: [0m[0;1;31merror: [0m[1minstance method 'rootFolderController' not found ; did you mean '_rootFolderController'?[0m
+2026-11-23T03:50:21.0589830Z [0;32m==> [1;39mCompiling src/Manager/ARITweakManager.m (arm64e)…[m
+2026-11-23T03:50:21.0602450Z   532 |             rootController = [iconController rootFolderController];[0m
+2026-11-23T03:50:21.0603110Z [0;32m==> [1;39mCompiling src/Options/ARIOption.m (arm64e)…[m
+2026-11-23T03:50:21.0604830Z       | [0;1;32m                                             ^~~~~~~~~~~~~~~~~~~~
+2026-11-23T03:50:21.0605940Z [0m      | [0;32m                                             _rootFolderController
+2026-11-23T03:50:21.0606470Z [0m1 error generated.
+2026-11-23T03:50:21.0607310Z make[3]: *** [/Users/runner/theos/makefiles/instance/rules.mk:308: /Users/runner/work/atria17/atria17/.theos/obj/arm64e/src/Manager/ARITweakManager.m.dbaf8bb6.o] Error 1
+2026-11-23T03:50:21.0608160Z make[3]: *** Waiting for unfinished jobs....
+2026-11-23T03:50:21.0775770Z [0;32m==> [1;39mCompiling src/Manager/ARIEditManager.m (arm64e)…[m
+2026-11-23T03:50:21.0783680Z make[2]: *** [/Users/runner/theos/makefiles/instance/library.mk:52: /Users/runner/work/atria17/atria17/.theos/obj/arm64e/Atria.dylib] Error 2
+2026-11-23T03:50:21.0786960Z rm /Users/runner/work/atria17/atria17/.theos/obj/arm64e/src/Hooks/MainLayout.xm.mm /Users/runner/work/atria17/atria17/.theos/obj/arm64e/src/Hooks/IconView.xm.mm /Users/runner/work/atria17/atria17/.theos/obj/arm64e/src/Hooks/AppLibrary.xm.mm /Users/runner/work/atria17/atria17/.theos/obj/arm64e/src/Hooks/DockView.xm.mm /Users/runner/work/atria17/atria17/.theos/obj/arm64e/src/Hooks/GridLayout.xm.mm /Users/runner/work/atria17/atria17/.theos/obj/arm64e/src/Hooks/PageDots.xm.mm /Users/runner/work/atria17/atria17/.theos/obj/arm64e/src/Hooks/Probe.x.m /Users/runner/work/atria17/atria17/.theos/obj/arm64e/src/Hooks/Helper.xm.mm /Users/runner/work/atria17/atria17/.theos/obj/arm64e/src/Hooks/IconState.xm.mm
+2026-11-23T03:50:21.0798450Z make[1]: *** [/Users/runner/theos/makefiles/instance/library.mk:37: internal-library-all_] Error 2
+2026-11-23T03:50:21.0799510Z make: *** [/Users/runner/theos/makefiles/master/rules.mk:146: Atria.all.tweak.variables] Error 2
+2026-11-23T03:50:21.0812590Z ##[error]Process completed with exit code 2.
+2026-11-23T03:50:21.0985470Z Post job cleanup.
+2026-11-23T03:50:21.4165220Z [command]/opt/homebrew/bin/git version
+2026-11-23T03:50:21.4386970Z git version 2.56.1
+2026-11-23T03:50:21.4405400Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/b0e7e0f9-f310-4968-bfc3-e296a5b986de/.gitconfig'
+2026-11-23T03:50:21.4414520Z Temporarily overriding HOME='/Users/runner/work/_temp/b0e7e0f9-f310-4968-bfc3-e296a5b986de' before making global git config changes
+2026-11-23T03:50:21.4415500Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-23T03:50:21.4418320Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/atria17/atria17
+2026-11-23T03:50:21.4526980Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-23T03:50:21.4657590Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-23T03:50:21.5836080Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-23T03:50:21.5943400Z http.https://github.com/.extraheader
+2026-11-23T03:50:21.5978560Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-23T03:50:21.6051690Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-23T03:50:21.7026110Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-23T03:50:21.7092050Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-23T03:50:21.8307490Z Cleaning up orphan processes
+2026-11-23T03:50:22.6342960Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
