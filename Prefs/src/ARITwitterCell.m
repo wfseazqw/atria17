@@ -4,6 +4,7 @@
 //
 
 #import "ARITwitterCell.h"
+#import "ARIHeaderCell.h"
 
 @implementation ARITwitterCell {
     UIImageView *_icon;
@@ -63,8 +64,8 @@
 }
 
 - (void)loadImage {
-    NSString *path = [NSString stringWithFormat:@THEOS_PACKAGE_INSTALL_PREFIX "/Library/PreferenceBundles/AtriaPrefs.bundle/ProfilePictures/%@.jpg", _displayName];
-    _icon.image = [UIImage imageWithContentsOfFile:path] ?: [UIImage systemImageNamed:@"person.circle"];
+    NSString *path = ARIPrefsAssetPath([_displayName stringByAppendingString:@".jpg"], @"ProfilePictures");
+    _icon.image = (path ? [UIImage imageWithContentsOfFile:path] : nil) ?: [UIImage systemImageNamed:@"person.circle"];
 }
 
 - (void)openTwitter {

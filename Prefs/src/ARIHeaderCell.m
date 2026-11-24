@@ -4,6 +4,29 @@
 //
 
 #import "ARIHeaderCell.h"
+#import <dlfcn.h>
+
+// RootHide/rootless 下 THEOS_PACKAGE_INSTALL_PREFIX 为空、/Library 前缀不可达，
+// 改为从 AtriaPrefs 自身真实安装路径取资源：先用 dladdr 定位可执行所在目录，失败再退回 bundle 路径
+NSString *ARIPrefsAssetPath(NSString *fileName, NSString *subdir) {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSMutableArray<NSString *> *bases = [NSMutableArray array];
+
+    Dl_info info;
+    if(dladdr((const void *)&ARIPrefsAssetPath, &info) && info.dli_fname) {
+        NSString *selfPath = [NSString stringWithUTF8String:info.dli_fname];
+        if(selfPath) [bases addObject:[selfPath stringByDeletingLastPathComponent]];
+    }
+    NSString *bundlePath = [NSBundle bundleForClass:[ARIHeaderCell class]].bundlePath;
+    if(bundlePath) [bases addObject:bundlePath];
+
+    for(NSString *base in bases) {
+        NSString *path = subdir ? [base stringByAppendingPathComponent:subdir] : base;
+        path = [path stringByAppendingPathComponent:fileName];
+        if([fm fileExistsAtPath:path]) return path;
+    }
+    return nil;
+}
 
 @implementation ARIHeaderCell {
     UIImageView *_icon;
@@ -14,7 +37,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 
     if(self) {
-        _icon = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:@THEOS_PACKAGE_INSTALL_PREFIX "/Library/PreferenceBundles/AtriaPrefs.bundle/full.png"]];
+        NSString *iconPath = ARIPrefsAssetPath(@"full.png", nil);
+        UIImage *iconImage = iconPath ? [UIImage imageWithContentsOfFile:iconPath] : nil;
+        _icon = [[UIImageView alloc] initWithImage:iconImage ?: [UIImage systemImageNamed:@"gearshape"]];
         [self addSubview:_icon];
         _icon.layer.masksToBounds = YES;
         _icon.layer.cornerCurve = kCACornerCurveContinuous;

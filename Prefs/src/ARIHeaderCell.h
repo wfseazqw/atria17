@@ -6,5 +6,8 @@
 #import <Preferences/PSTableCell.h>
 #import <UIKit/UIKit.h>
 
+// RootHide/rootless 环境下 /Library 前缀不可达，从 AtriaPrefs 自身真实安装路径取资源
+NSString *ARIPrefsAssetPath(NSString *fileName, NSString *subdir);
+
 @interface ARIHeaderCell : PSTableCell
 @end
